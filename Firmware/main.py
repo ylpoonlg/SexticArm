@@ -11,84 +11,69 @@ import visualize
 
 # Functions
 def degToRad(a):
-       return a * np.pi / 180.0
+    return a * np.pi / 180.0
 
 def radToDeg(a):
-       return a * 180.0 / np.pi
+    return a * 180.0 / np.pi
 
 def printA(a, msg):
-       A_tmp = [
-              round(radToDeg(a[1]), 4),
-              round(radToDeg(a[2]), 4),
-              round(radToDeg(a[3]), 4),
-              round(radToDeg(a[4]), 4),
-              round(radToDeg(a[5]), 4),
-              round(radToDeg(a[6]), 4),
-       ]
-       print(f'{msg}{A_tmp}')
+    A_tmp = [
+        round(radToDeg(a[1]), 4),
+        round(radToDeg(a[2]), 4),
+        round(radToDeg(a[3]), 4),
+        round(radToDeg(a[4]), 4),
+        round(radToDeg(a[5]), 4),
+        round(radToDeg(a[6]), 4),
+    ]
+    print(f'{msg}{A_tmp}')
+    print()
 
-def getR_06(ax, ay, az):
-       R_x = np.array([[0.0] * 3 for i in range(3)])
-       R_y = np.array([[0.0] * 3 for i in range(3)])
-       R_z = np.array([[0.0] * 3 for i in range(3)])
+def printMatrix(M, msg):
+    print(f'{msg}{M}')
+    print()
 
-       R_x[0][0] = 1.0
-       R_x[1][1] = np.cos(ax)
-       R_x[1][2] = -np.sin(ax)
-       R_x[2][1] = np.sin(ax)
-       R_x[2][2] = np.cos(ax)
+def getAngles():
+    # Get Target
+    Tx , Ty, Tz = cf.Tx, cf.Ty, cf.Tz
+    R_06 = None
+    if (cf.ANGLE_MODE == "legacy"):
+        Tax, Tay, Taz = degToRad(cf.Tax), degToRad(cf.Tay), degToRad(cf.Taz) # convert to radian
+        R_06 = wrist.getR_06_legacy(Tax, Tay, Taz)
+    elif (cf.ANGLE_MODE == "plane"):
+        Tap, Tae, Tar = degToRad(cf.Tap), degToRad(cf.Tae), degToRad(cf.Tar) # convert to radian
+        R_06 = wrist.getR_06_plane(Tap, Tae, Tar)
 
-       R_y[1][1] = 1.0
-       R_y[0][0] = np.cos(ay)
-       R_y[2][0] = -np.sin(ay)
-       R_y[0][2] = np.sin(ay)
-       R_y[2][2] = np.cos(ay)
+    # Get W (Position of the spherical wrist)
+    Wx = Tx - R_06[0][2] * cf.L4
+    Wy = Ty - R_06[1][2] * cf.L4
+    Wz = Tz - R_06[2][2] * cf.L4
 
-       R_z[2][2] = 1.0
-       R_z[0][0] = np.cos(az)
-       R_z[0][1] = -np.sin(az)
-       R_z[1][0] = np.sin(az)
-       R_z[1][1] = np.cos(az)
+    print(f'W ({Wx}, {Wy}, {Wz})')
+    print()
 
-       R_06 = np.matrix.dot(np.matrix.dot(R_x, R_y), R_z)
-       return R_06
+    a1, a2, a3 = RRR.getA123(Wx, Wy, Wz)
 
-# Init
-x0, y0, z0 = 0, 0, 0
+    R_03 = RRR.getR_03(a1, a2, a3)
+    R_03_inv = np.linalg.inv(R_03)
+    R_36 = np.matrix.dot(R_03_inv, R_06)
 
-# Main
-# Set Target
-Tx , Ty, Tz = cf.Tx, cf.Ty, cf.Tz
-Tax, Tay, Taz = degToRad(cf.Tax), degToRad(cf.Tay), degToRad(cf.Taz) # convert to radian
+    a4, a5, a6 = wrist.getA456(a1, a2, a3, R_36)
+    return a1, a2, a3, a4, a5, a6
 
-R_06 = getR_06(Tax, Tay, Taz)
-# print("R_06 =")
-# print(R_06)
-# print()
+def init():
+    print('''
+  ___  ___  ___  ___   ___  ___  ___  ___  ___  
+ | __>| . \| . || __> | . \| . || . >| . ||_ _| 
+ | . \| | || | || _>  |   /| | || . \| | | | |  
+ `___/|___/`___'|_|   |_\_\`___'|___/`___' |_|  
+    ''')
+    print('                 by ylpoonlg\n')
 
-# Get W (Position of the spherical wrist)
-Wx = Tx - R_06[0][2] * cf.L4
-Wy = Ty - R_06[1][2] * cf.L4
-Wz = Tz - R_06[2][2] * cf.L4
+def main():
+    a1, a2, a3, a4, a5, a6 = getAngles()
+    printA([0, a1, a2, a3, a4, a5, a6], 'A')
+    visualize.show([0, a1, a2, a3, a4, a5, a6])
 
-print(f'W({Wx}, {Wy}, {Wz})')
-print()
-
-a1, a2, a3 = RRR.getA123(Wx, Wy, Wz)
-
-R_03 = RRR.getR_03(a1, a2, a3)
-# print("R_03 = ")
-# print(R_03)
-# print()
-
-R_03_inv = np.linalg.inv(R_03)
-R_36 = np.matrix.dot(R_03_inv, R_06)
-# print('R_36 = ')
-# print(R_36)
-# print()
-
-a4, a5, a6 = wrist.getA456(a1, a2, a3, R_36)
-
-printA([0, a1, a2, a3, a4, a5, a6], 'A')
-print()
-visualize.show([0, a1, a2, a3, a4, a5, a6]) # First value is a dummy value
+if (__name__ == '__main__'):
+    init()
+    main()

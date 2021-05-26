@@ -46,9 +46,7 @@ def checkA123(Wx, Wy, Wz, alpha, beta, gamma):
         a3 = np.pi - gamma
 
         L3_x, L3_y, L3_z = chk.getJointCoordinates([0, a1, a2, a3, 0, 0, 0])[2]
-        
-        print(f'Checking A123: {L3_x}, {L3_y}, {L3_z}')
-
+        #print(f'Checking A123: {L3_x}, {L3_y}, {L3_z}')
         if (round(L3_x, 4)==round(Wx, 4)) and (round(L3_y, 4)==round(Wy, 4)) and (round(L3_z, 4)==round(Wz, 4)):
             return a1, a2, a3
 
