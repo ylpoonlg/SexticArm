@@ -32,16 +32,10 @@ def printMatrix(M, msg):
     print(f'{msg}{M}')
     print()
 
-def getAngles():
-    # Get Target
-    Tx , Ty, Tz = cf.Tx, cf.Ty, cf.Tz
-    R_06 = None
-    if (cf.ANGLE_MODE == "legacy"):
-        Tax, Tay, Taz = degToRad(cf.Tax), degToRad(cf.Tay), degToRad(cf.Taz) # convert to radian
-        R_06 = wrist.getR_06_legacy(Tax, Tay, Taz)
-    elif (cf.ANGLE_MODE == "plane"):
-        Tap, Tae, Tar = degToRad(cf.Tap), degToRad(cf.Tae), degToRad(cf.Tar) # convert to radian
-        R_06 = wrist.getR_06_plane(Tap, Tae, Tar)
+# Input target: angles in degrees
+def getAngles(Tx, Ty, Tz, Tap, Tae, Tar):
+    Tap, Tae, Tar = degToRad(Tap), degToRad(Tae), degToRad(Tar) # convert to radian
+    R_06 = wrist.getR_06_plane(Tap, Tae, Tar)
 
     # Get W (Position of the spherical wrist)
     Wx = Tx - R_06[0][2] * cf.L4
@@ -70,7 +64,7 @@ def init():
     print('                 by ylpoonlg\n')
 
 def main():
-    a1, a2, a3, a4, a5, a6 = getAngles()
+    a1, a2, a3, a4, a5, a6 = getAngles(cf.Tx, cf.Ty, cf.Tz, cf.Tap, cf.Tae, cf.Tar)
     printA([0, a1, a2, a3, a4, a5, a6], 'A')
     visualize.show([0, a1, a2, a3, a4, a5, a6])
 
