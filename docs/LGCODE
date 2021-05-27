@@ -1,18 +1,21 @@
 [G0]
-    # Move to given position and angle
-    X - in mm
-    Y - in mm
-    Z - in mm
-    P - in deg
-    E - in deg
-    R - in deg
+    # Move arm with given stepper angles
+    # e.g. G0 10 20 30 40 50 60 F200
+    [A1] - in deg
+    [A2] - in deg
+    [A3] - in deg
+    [A4] - in deg
+    [A5] - in deg
+    [A6] - in deg
+    F - Feedrate in mm/s
 
 [G1]
-    # Move arm with given stepper angles
-    A1 - in deg
-    A2 - in deg
-    A3 - in deg
-    A4 - in deg
-    A5 - in deg
-    A6 - in deg
-
+    # Move to given position and angle
+    # e.g. G1 X30 Y40 Z50 P45 E45 R0 F200
+    (X) - in mm
+    (Y) - in mm
+    (Z) - in mm
+    (P) - in deg
+    (E) - in deg
+    (R) - in deg
+    (F) - Feedrate in mm/s

@@ -64,9 +64,9 @@ def main():
         for cmd in cmds:
             print('-------------------')
             if (cmd['cmd'] == 'G0'):
-                lgcode.G0(cmd['X'], cmd['Y'], cmd['Z'], cmd['P'], cmd['E'], cmd['R'], cmd['F'])
+                lgcode.G0(cmd['A1'], cmd['A2'], cmd['A3'], cmd['A4'], cmd['A5'], cmd['A6'], cmd['F'])
             elif (cmd['cmd'] == 'G1'):
-                lgcode.G1(cmd['A1'], cmd['A2'], cmd['A3'], cmd['A4'], cmd['A5'], cmd['A6'], cmd['F'])
+                lgcode.G1(cmd['X'], cmd['Y'], cmd['Z'], cmd['P'], cmd['E'], cmd['R'], cmd['F'])
                 
         print('\n________Finished________\n')
 
