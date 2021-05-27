@@ -8,31 +8,9 @@ import RRR
 import wrist
 import checking as chk
 import visualize
-from lgcode import lgcodeRead
+import lgcode
+from functions import *
 
-# Functions
-def degToRad(a):
-    return a * np.pi / 180.0
-
-def radToDeg(a):
-    return a * 180.0 / np.pi
-
-def printA(a, msg):
-    A_tmp = [
-        round(radToDeg(a[1]), 4),
-        round(radToDeg(a[2]), 4),
-        round(radToDeg(a[3]), 4),
-        round(radToDeg(a[4]), 4),
-        round(radToDeg(a[5]), 4),
-        round(radToDeg(a[6]), 4),
-    ]
-    print(f'{msg}{A_tmp}')
-    print()
-
-def printList(M, msg):
-    print(msg)
-    print(M)
-    print()
 
 # Input target: angles in degrees
 def getAngles(Tx, Ty, Tz, Tap, Tae, Tar):
@@ -44,8 +22,7 @@ def getAngles(Tx, Ty, Tz, Tap, Tae, Tar):
     Wy = Ty - R_06[1][2] * cf.L4
     Wz = Tz - R_06[2][2] * cf.L4
 
-    print(f'W ({Wx}, {Wy}, {Wz})')
-    print()
+    # print(f'W ({Wx}, {Wy}, {Wz})')
 
     a1, a2, a3 = RRR.getA123(Wx, Wy, Wz)
 
@@ -67,7 +44,7 @@ def init():
 
 def main():
     while True:
-        print('...Ready...')
+        print('\n________Ready________\n')
         
         opt = input('Press Enter to start (q to exit) ')
         if (opt == 'q'):
@@ -77,20 +54,21 @@ def main():
         script_file_name = 'test.lgcode'
         if (cf.SCRIPT_FOLDER_PATH[-1] != '/'):
             script_file_name = '/' + script_file_name
-        reader = lgcodeRead(cf.SCRIPT_FOLDER_PATH+script_file_name)
+        reader = lgcode.lgcodeRead(cf.SCRIPT_FOLDER_PATH+script_file_name)
 
         # parse commands from file
         cmds = reader.readlns()
-        printList(cmds, 'LGCODE commands: ')
 
         print('>> Starting')
+        visualize.init() # New display window
         for cmd in cmds:
             print('-------------------')
-            if(cmd['cmd'] == 'G0'):
-                a1, a2, a3, a4, a5, a6 = getAngles(cmd['X'], cmd['Y'], cmd['Z'], cmd['P'], cmd['E'], cmd['R'])
-                printA([0, a1, a2, a3, a4, a5, a6], 'A')
-                visualize.show([0, a1, a2, a3, a4, a5, a6])
-        print('________Finished_________\n')
+            if (cmd['cmd'] == 'G0'):
+                lgcode.G0(cmd['X'], cmd['Y'], cmd['Z'], cmd['P'], cmd['E'], cmd['R'], cmd['F'])
+            elif (cmd['cmd'] == 'G1'):
+                lgcode.G1(cmd['A1'], cmd['A2'], cmd['A3'], cmd['A4'], cmd['A5'], cmd['A6'], cmd['F'])
+                
+        print('\n________Finished________\n')
 
 if (__name__ == '__main__'):
     init()

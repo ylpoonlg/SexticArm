@@ -1,0 +1,18 @@
+[G0]
+    # Move to given position and angle
+    X - in mm
+    Y - in mm
+    Z - in mm
+    P - in deg
+    E - in deg
+    R - in deg
+
+[G1]
+    # Move arm with given stepper angles
+    A1 - in deg
+    A2 - in deg
+    A3 - in deg
+    A4 - in deg
+    A5 - in deg
+    A6 - in deg
+

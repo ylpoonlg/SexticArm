@@ -36,8 +36,14 @@ def getJointCoordinates(a):
     R_36[2][1] = np.sin(a[5]) * np.sin(a[6])
     R_36[2][2] = np.cos(a[5])
 
-
     R_06 = np.matrix.dot(R_03, R_36)
+
+    # print('R_03 = ')
+    # print(R_03)
+    # print('R_36 = ')
+    # print(R_36)
+    # print('R_06 = ')
+    # print(R_06)
 
     L6_x = L3_x + cf.L4 * R_06[0][2]
     L6_y = L3_y + cf.L4 * R_06[1][2]

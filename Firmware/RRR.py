@@ -19,16 +19,16 @@ def getA123(Wx, Wy, Wz):
 def getR_03(a1, a2, a3):
     R_03 = np.array([[0.0] * 3 for i in range(3)])
 
-    R_03[0][0] = np.cos(a1)
-    R_03[0][1] = - np.sin(a1)*np.cos(a2)*np.cos(a3) + np.sin(a1)*np.sin(a2)*np.sin(a3)
-    R_03[0][2] = np.sin(a1)*np.cos(a2)*np.sin(a3) + np.sin(a1)*np.sin(a2)*np.cos(a3)
+    R_03[0][0] = np.cos(a1)*np.cos(a2)*np.cos(a3) - np.cos(a1)*np.sin(a2)*np.sin(a3)
+    R_03[0][1] = - np.sin(a1)
+    R_03[0][2] = np.cos(a1)*np.cos(a2)*np.sin(a3) + np.cos(a1)*np.sin(a2)*np.cos(a3)
 
-    R_03[1][0] = np.sin(a1)
-    R_03[1][1] = np.cos(a1)*np.cos(a2)*np.cos(a3) - np.cos(a1)*np.sin(a2)*np.sin(a3)
-    R_03[1][2] = - np.cos(a1)*np.cos(a2)*np.sin(a3) - np.cos(a1)*np.sin(a2)*np.cos(a3)
+    R_03[1][0] = np.sin(a1)*np.cos(a2)*np.cos(a3) - np.sin(a1)*np.sin(a2)*np.sin(a3)
+    R_03[1][1] = np.cos(a1)
+    R_03[1][2] = np.sin(a1)*np.cos(a2)*np.sin(a3) + np.sin(a1)*np.sin(a2)*np.cos(a3)
 
-    R_03[2][0] = 0
-    R_03[2][1] = np.sin(a2)*np.cos(a3) + np.cos(a2)*np.sin(a3)
+    R_03[2][0] = - np.sin(a2)*np.cos(a3) - np.cos(a2)*np.sin(a3)
+    R_03[2][1] = 0
     R_03[2][2] = - np.sin(a2)*np.sin(a3) + np.cos(a2)*np.cos(a3)
 
     return R_03

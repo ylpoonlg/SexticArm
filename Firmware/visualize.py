@@ -5,9 +5,14 @@ import RRR
 import checking as chk
 import config as cf
 
+fig = None
+ax = None
+
 # Init
-fig = plt.figure()
-ax = plt.axes(projection ='3d')
+def init():
+    global fig, ax
+    fig = plt.figure()
+    ax = plt.axes(projection ='3d')
 
 def plotLine(S, E, clr='black'):
     global ax
@@ -15,15 +20,15 @@ def plotLine(S, E, clr='black'):
 
 # Plot
 def show(a):
+    global fig, ax
+
     J_coor = chk.getJointCoordinates(a)
     (L1_x, L1_y, L1_z) = J_coor[0]
     (L2_x, L2_y, L2_z) = J_coor[1]
     (L3_x, L3_y, L3_z) = J_coor[2]
     (L6_x, L6_y, L6_z) = J_coor[3]
 
-    print(f'J6 ({round(L6_x, 4)}, {round(L6_y, 4)}, {round(L6_z, 4)})')
-
-    plotLine([0, 0, 0], [L1_x, L1_y, L1_z], '#ff0000')
+    plotLine([0, 0, 0],          [L1_x, L1_y, L1_z], '#ff0000')
     plotLine([L1_x, L1_y, L1_z], [L2_x, L2_y, L2_z], '#ff9300')
     plotLine([L2_x, L2_y, L2_z], [L3_x, L3_y, L3_z], '#00ff22')
     plotLine([L3_x, L3_y, L3_z], [L6_x, L6_y, L6_z], '#0022ff')
