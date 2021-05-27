@@ -8,6 +8,7 @@ import RRR
 import wrist
 import checking as chk
 import visualize
+from lgcode import lgcodeRead
 
 # Functions
 def degToRad(a):
@@ -28,8 +29,9 @@ def printA(a, msg):
     print(f'{msg}{A_tmp}')
     print()
 
-def printMatrix(M, msg):
-    print(f'{msg}{M}')
+def printList(M, msg):
+    print(msg)
+    print(M)
     print()
 
 # Input target: angles in degrees
@@ -51,7 +53,7 @@ def getAngles(Tx, Ty, Tz, Tap, Tae, Tar):
     R_03_inv = np.linalg.inv(R_03)
     R_36 = np.matrix.dot(R_03_inv, R_06)
 
-    a4, a5, a6 = wrist.getA456(a1, a2, a3, R_36)
+    a4, a5, a6 = wrist.getA456(Tx, Ty, Tz, a1, a2, a3, R_36)
     return a1, a2, a3, a4, a5, a6
 
 def init():
@@ -64,9 +66,31 @@ def init():
     print('                 by ylpoonlg\n')
 
 def main():
-    a1, a2, a3, a4, a5, a6 = getAngles(cf.Tx, cf.Ty, cf.Tz, cf.Tap, cf.Tae, cf.Tar)
-    printA([0, a1, a2, a3, a4, a5, a6], 'A')
-    visualize.show([0, a1, a2, a3, a4, a5, a6])
+    while True:
+        print('...Ready...')
+        
+        opt = input('Press Enter to start (q to exit) ')
+        if (opt == 'q'):
+            break
+
+        # read lgcode
+        script_file_name = 'test.lgcode'
+        if (cf.SCRIPT_FOLDER_PATH[-1] != '/'):
+            script_file_name = '/' + script_file_name
+        reader = lgcodeRead(cf.SCRIPT_FOLDER_PATH+script_file_name)
+
+        # parse commands from file
+        cmds = reader.readlns()
+        printList(cmds, 'LGCODE commands: ')
+
+        print('>> Starting')
+        for cmd in cmds:
+            print('-------------------')
+            if(cmd['cmd'] == 'G0'):
+                a1, a2, a3, a4, a5, a6 = getAngles(cmd['X'], cmd['Y'], cmd['Z'], cmd['P'], cmd['E'], cmd['R'])
+                printA([0, a1, a2, a3, a4, a5, a6], 'A')
+                visualize.show([0, a1, a2, a3, a4, a5, a6])
+        print('________Finished_________\n')
 
 if (__name__ == '__main__'):
     init()

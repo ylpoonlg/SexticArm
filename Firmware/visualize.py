@@ -9,9 +9,9 @@ import config as cf
 fig = plt.figure()
 ax = plt.axes(projection ='3d')
 
-def plotLine(S, E):
+def plotLine(S, E, clr='black'):
     global ax
-    ax.plot([S[0], E[0]], [S[1], E[1]], [S[2], E[2]])
+    ax.plot([S[0], E[0]], [S[1], E[1]], [S[2], E[2]], color=clr)
 
 # Plot
 def show(a):
@@ -23,10 +23,10 @@ def show(a):
 
     print(f'J6 ({round(L6_x, 4)}, {round(L6_y, 4)}, {round(L6_z, 4)})')
 
-    plotLine([0, 0, 0], [L1_x, L1_y, L1_z])
-    plotLine([L1_x, L1_y, L1_z], [L2_x, L2_y, L2_z])
-    plotLine([L2_x, L2_y, L2_z], [L3_x, L3_y, L3_z])
-    plotLine([L3_x, L3_y, L3_z], [L6_x, L6_y, L6_z])
+    plotLine([0, 0, 0], [L1_x, L1_y, L1_z], '#ff0000')
+    plotLine([L1_x, L1_y, L1_z], [L2_x, L2_y, L2_z], '#ff9300')
+    plotLine([L2_x, L2_y, L2_z], [L3_x, L3_y, L3_z], '#00ff22')
+    plotLine([L3_x, L3_y, L3_z], [L6_x, L6_y, L6_z], '#0022ff')
 
     # Show
     ax.set_title('6DOF visual')
@@ -38,4 +38,4 @@ def show(a):
     ax.set_ylim3d(-200, 200)
     ax.set_zlim3d(0, 350)
 
-    plt.show()
+    plt.show(block=False)

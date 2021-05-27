@@ -3,11 +3,12 @@ import math
 import config as cf
 import checking as chk
 
-def getA456(a1, a2, a3, R_36):
+def getA456(Tx, Ty, Tz, a1, a2, a3, R_36):
     tests = [[0,0,0], [0,0,1], [0,1,0],
             [0,1,1], [1,0,0], [1,0,1],
             [1,1,0], [1,1,1]]
     
+    # Check A456
     for i in range(len(tests)):
         a5 = np.arccos( max(-1.0, min(R_36[2][2], 1.0)) )
         a4 = np.arcsin( max(-1.0, min(R_36[1][2] / np.sin(a5), 1.0)) )
@@ -21,7 +22,7 @@ def getA456(a1, a2, a3, R_36):
         
         L6_x, L6_y, L6_z = chk.getJointCoordinates([0, a1, a2, a3, a4, a5, a6])[3]
         #print(f'Checking A456: {round(L6_x, 4)}, {round(L6_y, 4)}, {round(L6_z, 4)}')
-        if (round(L6_x, 4)==round(cf.Tx, 4)) and (round(L6_y, 4)==round(cf.Ty, 4)) and (round(L6_z, 4)==round(cf.Tz, 4)):
+        if (round(L6_x, 4)==round(Tx, 4)) and (round(L6_y, 4)==round(Ty, 4)) and (round(L6_z, 4)==round(Tz, 4)):
             return a4, a5, a6
 
     return 0, 0, 0
@@ -53,32 +54,3 @@ def getR_06_plane(Tap, Tae, Tar):
     R_z[1][1] = np.cos(Tar)
     
     return np.matrix.dot(R_06, R_z)
-
-
-
-
-def getR_06_legacy(ax, ay, az):
-    R_x = np.array([[0.0] * 3 for i in range(3)])
-    R_y = np.array([[0.0] * 3 for i in range(3)])
-    R_z = np.array([[0.0] * 3 for i in range(3)])
-
-    R_x[0][0] = 1.0
-    R_x[1][1] = np.cos(ax)
-    R_x[1][2] = -np.sin(ax)
-    R_x[2][1] = np.sin(ax)
-    R_x[2][2] = np.cos(ax)
-
-    R_y[1][1] = 1.0
-    R_y[0][0] = np.cos(ay)
-    R_y[2][0] = -np.sin(ay)
-    R_y[0][2] = np.sin(ay)
-    R_y[2][2] = np.cos(ay)
-
-    R_z[2][2] = 1.0
-    R_z[0][0] = np.cos(az)
-    R_z[0][1] = -np.sin(az)
-    R_z[1][0] = np.sin(az)
-    R_z[1][1] = np.cos(az)
-
-    R_06 = np.matrix.dot(np.matrix.dot(R_x, R_y), R_z)
-    return R_06
