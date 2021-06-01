@@ -5,73 +5,58 @@ import checking as chk
 from functions import *
 import RRR, wrist, visualize
 
-class lgcodeRead():
-    def __init__(self, script_path):
-        super().__init__()
-        path = os.path.abspath(script_path)
-        print(f'>> Running script at {path}')
-        self.script = open(path, 'r')
+class lgcodeReader():
+    def __init__(self):
+        self.status = {
+            'X': 0, 'Y': 0, 'Z': cf.L1 + cf.L2 + cf.L3 + cf.L4,
+            'P': 0, 'E': 0, 'R': 0,
+            'A1': 0, 'A2': 0, 'A3': 0,
+            'A4': 0, 'A5': 0, 'A6': 0,
+            'F': cf.DEFAULT_FEEDRATE,
+        }
 
-    def readlns(self):
-        # Store current states
-        X = 0
-        Y = 0
-        Z = 0
-        P = 0
-        E = 0
-        R = 0
-        F = 200
+    def decExeCommand(self, cmd):
+        cmd = cmd.split(';')[0].strip('\n').upper()
+        paramtrs = cmd.split(' ')
+        if (len(paramtrs) == 0):
+            return
+        
+        if (paramtrs[0] == 'G0'):
+            for p in paramtrs:
+                if (p[0] == 'A'):
+                    instr = p[0:2]
+                    op = float(p[2::])
+                    self.status[instr] = degToRad(op)
 
-        lines = self.script.readlines()
-        result = []
+            G0( self.status['A1'], self.status['A2'], self.status['A3'],
+                self.status['A4'], self.status['A5'], self.status['A6'],
+                self.status['F'] )
+            
+        elif (paramtrs[0] == 'G1'):
+            for p in paramtrs:
+                op = float(p[1::])
+                self.status[p[0]] = op
+            G1( self.status['X'], self.status['Y'], self.status['Z'],
+                self.status['P'], self.status['E'], self.status['R'],
+                self.status['F'] )
+
+
+    def readFile(self, path):
+        path = os.path.abspath(path)
+        print(f'>> Running script at {path}...')
+        script = open(path, 'r')
+        lines = script.readlines()
+        print('________STARTING________')
         for line in lines:
-            line = line.split(';')[0]
-            line = line.strip('\n')
-            cmds = line.split(' ')
-            if (len(cmds) == 0):
-                continue
-            if cmds[0] == 'G0':
-                result.append({ 'cmd': 'G0',
-                    'A1': float(cmds[1]), 'A2': float(cmds[2]), 'A3': float(cmds[3]),
-                    'A4': float(cmds[4]), 'A5': float(cmds[5]), 'A6': float(cmds[6]),
-                    'F': float(cmds[7][1::])
-                })
-            elif cmds[0] == 'G1':
-                for cmd in cmds:
-                    cmd = cmd.strip("\n")
-                    if (cmd[0] == 'X'):
-                        X = float(cmd[1::])
-                    elif (cmd[0] == 'Y'):
-                        Y = float(cmd[1::])
-                    elif (cmd[0] == 'Z'):
-                        Z = float(cmd[1::])
-                    elif (cmd[0] == 'P'):
-                        P = float(cmd[1::])
-                    elif (cmd[0] == 'E'):
-                        E = float(cmd[1::])
-                    elif (cmd[0] == 'R'):
-                        R = float(cmd[1::])
-                    elif (cmd[0] == 'F'):
-                        F = float(cmd[1::])
-                result.append({ 'cmd': 'G1',
-                    'X': X, 'Y': Y, 'Z': Z,
-                    'P': P, 'E': E, 'R': R,
-                    'F': F
-                })
-
-
-        return result
+            self.decExeCommand(line)
+        print('________FINISHED________\n')
 
 
 
 #-------------------------------------------------------------
 #       LGCODE COMMANDS
 #-------------------------------------------------------------
-def G0(a1, a2, a3, a4, a5, a6, F, unit='deg'):
-    if unit == 'deg':
-        a1, a2, a3 = degToRad(a1), degToRad(a2), degToRad(a3)
-        a4, a5, a6 = degToRad(a4), degToRad(a5), degToRad(a6)
-    
+def G0(a1, a2, a3, a4, a5, a6, F):
     a = [0, a1, a2, a3, a4, a5, a6]
     a_deg = [0, radToDeg(a1), radToDeg(a2), radToDeg(a3), radToDeg(a4), radToDeg(a5), radToDeg(a6)]
     printA(a_deg, '>> Angles: ')
@@ -98,4 +83,4 @@ def G1(Tx, Ty, Tz, Tap, Tae, Tar, F):
 
     a4, a5, a6 = wrist.getA456(Tx, Ty, Tz, a1, a2, a3, R_36)
 
-    G0(a1, a2, a3, a4, a5, a6, F, unit='rad')
+    G0(a1, a2, a3, a4, a5, a6, F)
