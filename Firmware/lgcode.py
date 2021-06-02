@@ -40,7 +40,6 @@ class lgcodeReader():
                 self.status['P'], self.status['E'], self.status['R'],
                 self.status['F'] )
 
-
     def readFile(self, path):
         path = os.path.abspath(path)
         print(f'>> Running script at {path}...')
@@ -60,7 +59,6 @@ def G0(a1, a2, a3, a4, a5, a6, F):
     a = [0, a1, a2, a3, a4, a5, a6]
     a_deg = [0, radToDeg(a1), radToDeg(a2), radToDeg(a3), radToDeg(a4), radToDeg(a5), radToDeg(a6)]
     printA(a_deg, '>> Angles: ')
-
     J6_x, J6_y, J6_z = chk.getJointCoordinates(a)[3]
     printA([J6_x, J6_y, J6_z], '>> Toolhead: ')
     visualize.show(a)

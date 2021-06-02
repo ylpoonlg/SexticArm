@@ -4,20 +4,6 @@ import config as cf
 import checking as chk
 from functions import *
 
-def getA123(Wx, Wy, Wz):
-    R = np.sqrt(Wx*Wx + Wy*Wy)
-    dz = Wz - cf.L1
-    L23 = np.sqrt(R*R + dz*dz)
-
-    alpha = np.pi / 2
-    if (R != 0):
-        alpha = np.arctan(dz / R)
-    beta = np.arccos((pow(cf.L2, 2) + pow(L23, 2) - pow(cf.L3, 2)) / (2*cf.L2*L23))
-    gamma = np.arccos((pow(cf.L2, 2) + pow(cf.L3, 2) - pow(L23, 2)) / (2*cf.L2*cf.L3))
-
-    a1, a2, a3 = checkA123(Wx, Wy, Wz, alpha, beta, gamma)
-    return a1, a2, a3
-
 def getR_03(a1, a2, a3):
     R_03 = np.array([[0.0] * 3 for i in range(3)])
 
@@ -36,20 +22,53 @@ def getR_03(a1, a2, a3):
     log(f'R_03 = \n{R_03}\n', 3)
     return R_03
 
-def checkA123(Wx, Wy, Wz, alpha, beta, gamma):
-    a1_ori = np.pi / 2
-    if (round(Wx, 4) != 0):
-        a1_ori = np.arctan(Wy / Wx)
+def getR_06_plane(Tap, Tae, Tar):
+    Tae = np.pi/2 - Tae
+    R_06 = np.array([
+            [np.cos(Tap)*np.cos(Tae)*np.cos(Tar) - np.sin(Tap)*np.sin(Tar),
+            -np.cos(Tap)*np.cos(Tae)*np.sin(Tar) - np.sin(Tap)*np.cos(Tar),
+            np.cos(Tap)*np.sin(Tae)],
+            [np.sin(Tap)*np.cos(Tae)*np.cos(Tar) + np.cos(Tap)*np.sin(Tar),
+            -np.sin(Tap)*np.cos(Tae)*np.sin(Tar) + np.cos(Tap)*np.cos(Tar),
+            np.sin(Tap)*np.sin(Tae)],
+            [-np.sin(Tae)*np.cos(Tar),
+            np.sin(Tae)*np.sin(Tar),
+            np.cos(Tae)]
+        ])
+    
+    log(f'R_06 = \n{R_06}\n', 3)
 
+    return R_06
+
+def getA123(Wx, Wy, Wz):
+    R = np.sqrt(Wx*Wx + Wy*Wy)
+    dz = Wz - cf.L1
+    L23 = np.sqrt(R*R + dz*dz)
+
+    beta = np.arccos((pow(cf.L2, 2) + pow(L23, 2) - pow(cf.L3, 2)) / (2*cf.L2*L23))
+    gamma = np.arccos((pow(cf.L2, 2) + pow(cf.L3, 2) - pow(L23, 2)) / (2*cf.L2*cf.L3))
+
+    # Check sin/cos/tan quadrants
     tests = [[0,0], [1,0], [0,1], [1,1]]
-
+    
+    # Check A123
     for i in range(len(tests)):
-        a1 = a1_ori + np.pi * tests[i][0]
-        a2 = np.pi/2.0 - (alpha + np.pi * tests[i][1]) - beta
+        alpha = np.pi / 2
+        if (R != 0):
+            alpha = np.arctan(dz / R)
+        a1 = np.pi / 2
+        if (round(Wx, 4) != 0):
+            a1 = np.arctan(Wy / Wx)
+        
+        if (tests[i][0] == 1):
+            a1 += np.pi
+        if (tests[i][1] == 1):
+            alpha += np.pi
+        
+        a2 = np.pi / 2 - alpha - beta
         a3 = np.pi - gamma
-
+        
         L3_x, L3_y, L3_z = chk.getJointCoordinates([0, a1, a2, a3, 0, 0, 0])[2]
-
         if (round(L3_x, 4)==round(Wx, 4)) and (round(L3_y, 4)==round(Wy, 4)) and (round(L3_z, 4)==round(Wz, 4)):
             if (a1 < 0):
                 a1 += 2*np.pi
@@ -58,7 +77,8 @@ def checkA123(Wx, Wy, Wz, alpha, beta, gamma):
             if (a3 < 0):
                 a3 += 2*np.pi
             return a1, a2, a3
-
+    
+    print('>> Error: Failed to get a1, a2, a3')
     return 0, 0, 0
 
 def getA456(Tx, Ty, Tz, a1, a2, a3, R_36):
@@ -109,26 +129,8 @@ def getA456(Tx, Ty, Tz, a1, a2, a3, R_36):
                     a6 += 2*np.pi
                 return a4, a5, a6
 
+    print('>> Error: Failed to get a4, a5, a6')
     return 0, 0, 0
-
-
-def getR_06_plane(Tap, Tae, Tar):
-    Tae = np.pi/2 - Tae
-    R_06 = np.array([
-            [np.cos(Tap)*np.cos(Tae)*np.cos(Tar) - np.sin(Tap)*np.sin(Tar),
-            -np.cos(Tap)*np.cos(Tae)*np.sin(Tar) - np.sin(Tap)*np.cos(Tar),
-            np.cos(Tap)*np.sin(Tae)],
-            [np.sin(Tap)*np.cos(Tae)*np.cos(Tar) + np.cos(Tap)*np.sin(Tar),
-            -np.sin(Tap)*np.cos(Tae)*np.sin(Tar) + np.cos(Tap)*np.cos(Tar),
-            np.sin(Tap)*np.sin(Tae)],
-            [-np.sin(Tae)*np.cos(Tar),
-            np.sin(Tae)*np.sin(Tar),
-            np.cos(Tae)]
-        ])
-    
-    log(f'R_06 = \n{R_06}\n', 3)
-
-    return R_06
 
 def getWristPosition(Tx, Ty, Tz, Tap, Tae, Tar):
     R_06 = getR_06_plane(Tap, Tae, Tar)

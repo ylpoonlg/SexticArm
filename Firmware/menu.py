@@ -55,7 +55,6 @@ Help
     def fileMode(self):
         print('\n[File Mode]')
         while True:
-            visualize.init() # New display window
 
             path = self.getFilePath()
             if path == 'q':
@@ -72,6 +71,7 @@ Help
                 ''')
                 continue
 
+            visualize.init() # New display window
             reader = lgcodeReader()
             reader.readFile(path)
 
