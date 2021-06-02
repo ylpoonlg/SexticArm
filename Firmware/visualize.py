@@ -1,9 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
-import RRR
 import checking as chk
-import config as cf
 
 fig = None
 ax = None

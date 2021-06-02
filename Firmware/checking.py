@@ -1,6 +1,7 @@
 import numpy as np
 import config as cf
-import RRR
+import ik
+from functions import *
 
 def getJointCoordinates(a):
     # Link 1
@@ -23,7 +24,7 @@ def getJointCoordinates(a):
     L3_z = L1_z + L3_ver
 
     # Spherical Wrist
-    R_03 = RRR.getR_03(a[1], a[2], a[3])
+    R_03 = ik.getR_03(a[1], a[2], a[3])
 
     R_36 = np.array([[0.0] * 3 for i in range(3)])
     R_36[0][0] = np.cos(a[4])*np.cos(a[5])*np.cos(a[6]) - np.sin(a[4])*np.sin(a[6])
@@ -37,19 +38,11 @@ def getJointCoordinates(a):
     R_36[2][2] = np.cos(a[5])
 
     R_06 = np.matrix.dot(R_03, R_36)
-
-    # print('R_03 = ')
-    # print(R_03)
-    # print('R_36 = ')
-    # print(R_36)
-    # print('R_06 = ')
-    # print(R_06)
+    log(f'Checking R_06 =\n{R_06}\n', 3)
 
     L6_x = L3_x + cf.L4 * R_06[0][2]
     L6_y = L3_y + cf.L4 * R_06[1][2]
     L6_z = L3_z + cf.L4 * R_06[2][2]
-
-    # print(f'J6 (Toolhead): ({round(L6_x, 4)}, {round(L6_y, 4)}, {round(L6_z, 4)})')
 
     return [(L1_x, L1_y, L1_z),
             (L2_x, L2_y, L2_z),

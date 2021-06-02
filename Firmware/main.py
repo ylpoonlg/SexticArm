@@ -1,16 +1,5 @@
-# Libraries
-import numpy as np
-import math
-import os
-
-# Modules
-import config as cf
-import RRR
-import wrist
-import checking as chk
-import visualize
-import lgcode
 from menu import Menu
+import config as cf
 from functions import *
 
 def init():

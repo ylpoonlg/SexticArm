@@ -3,7 +3,7 @@ import os
 import config as cf
 import checking as chk
 from functions import *
-import RRR, wrist, visualize
+import ik, visualize
 
 class lgcodeReader():
     def __init__(self):
@@ -67,5 +67,5 @@ def G0(a1, a2, a3, a4, a5, a6, F):
 
 def G1(Tx, Ty, Tz, Tap, Tae, Tar, F):
     Tap, Tae, Tar = degToRad(Tap), degToRad(Tae), degToRad(Tar) # convert to radian
-    a1, a2, a3, a4, a5, a6 = wrist.getAngles(Tx, Ty, Tz, Tap, Tae, Tar)
+    a1, a2, a3, a4, a5, a6 = ik.getAngles(Tx, Ty, Tz, Tap, Tae, Tar)
     G0(a1, a2, a3, a4, a5, a6, F)
