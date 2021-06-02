@@ -78,6 +78,7 @@ Help
     def manualMode(self):
         visualize.init() # New display window
         print('\n[Manual Mode]')
+        reader = lgcodeReader()
         while True:
             cmd = input('Enter Command (h for help): ')
             if cmd == 'q':
@@ -95,5 +96,4 @@ Help
                 ''')
                 continue
 
-            reader = lgcodeReader()
             reader.decExeCommand(cmd)

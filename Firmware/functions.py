@@ -1,4 +1,5 @@
 import numpy as np
+import config as cf
 
 # Functions
 def degToRad(a):
@@ -12,3 +13,7 @@ def printA(a, msg):
     for i in range(len(a)):
         a_tmp.append(round(a[i], 4))
     print(f'{msg}{a_tmp}')
+
+def log(msg, lvl=0):
+    if cf.DEBUG_LOG_LEVEL >= lvl:
+        print(msg)

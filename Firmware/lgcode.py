@@ -9,7 +9,7 @@ class lgcodeReader():
     def __init__(self):
         self.status = {
             'X': 0, 'Y': 0, 'Z': cf.L1 + cf.L2 + cf.L3 + cf.L4,
-            'P': 0, 'E': 0, 'R': 0,
+            'P': 0, 'E': 90, 'R': 0,
             'A1': 0, 'A2': 0, 'A3': 0,
             'A4': 0, 'A5': 0, 'A6': 0,
             'F': cf.DEFAULT_FEEDRATE,
@@ -67,20 +67,5 @@ def G0(a1, a2, a3, a4, a5, a6, F):
 
 def G1(Tx, Ty, Tz, Tap, Tae, Tar, F):
     Tap, Tae, Tar = degToRad(Tap), degToRad(Tae), degToRad(Tar) # convert to radian
-    R_06 = wrist.getR_06_plane(Tap, Tae, Tar)
-
-    # Get W (Position of the spherical wrist)
-    Wx = Tx - R_06[0][2] * cf.L4
-    Wy = Ty - R_06[1][2] * cf.L4
-    Wz = Tz - R_06[2][2] * cf.L4
-    # print(f'W ({Wx}, {Wy}, {Wz})')
-
-    a1, a2, a3 = RRR.getA123(Wx, Wy, Wz)
-
-    R_03 = RRR.getR_03(a1, a2, a3)
-    R_03_inv = np.linalg.inv(R_03)
-    R_36 = np.matrix.dot(R_03_inv, R_06)
-
-    a4, a5, a6 = wrist.getA456(Tx, Ty, Tz, a1, a2, a3, R_36)
-
+    a1, a2, a3, a4, a5, a6 = wrist.getAngles(Tx, Ty, Tz, Tap, Tae, Tar)
     G0(a1, a2, a3, a4, a5, a6, F)

@@ -1,6 +1,7 @@
 import numpy as np
 import config as cf
 import checking as chk
+from functions import *
 
 def getA123(Wx, Wy, Wz):
     R = np.sqrt(Wx*Wx + Wy*Wy)
@@ -31,6 +32,7 @@ def getR_03(a1, a2, a3):
     R_03[2][1] = 0
     R_03[2][2] = - np.sin(a2)*np.sin(a3) + np.cos(a2)*np.cos(a3)
 
+    log(f'R_03 = \n{R_03}\n', 3)
     return R_03
 
 def checkA123(Wx, Wy, Wz, alpha, beta, gamma):
@@ -46,11 +48,14 @@ def checkA123(Wx, Wy, Wz, alpha, beta, gamma):
         a3 = np.pi - gamma
 
         L3_x, L3_y, L3_z = chk.getJointCoordinates([0, a1, a2, a3, 0, 0, 0])[2]
-        #print(f'Checking A123: {L3_x}, {L3_y}, {L3_z}')
+
         if (round(L3_x, 4)==round(Wx, 4)) and (round(L3_y, 4)==round(Wy, 4)) and (round(L3_z, 4)==round(Wz, 4)):
+            if (a1 < 0):
+                a1 += 2*np.pi
+            if (a2 < 0):
+                a2 += 2*np.pi
+            if (a3 < 0):
+                a3 += 2*np.pi
             return a1, a2, a3
 
-    a1 = a1_ori
-    a2 = np.pi/2.0 - alpha - beta
-    a3 = np.pi - gamma
-    return a1, a2, a3
+    return 0, 0, 0
