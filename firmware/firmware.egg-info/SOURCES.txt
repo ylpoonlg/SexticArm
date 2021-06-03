@@ -1,0 +1,15 @@
+setup.py
+firmware/__init__.py
+firmware/checking.py
+firmware/config.py
+firmware/functions.py
+firmware/ik.py
+firmware/lgcode.py
+firmware/main.py
+firmware/menu.py
+firmware/visualize.py
+firmware.egg-info/PKG-INFO
+firmware.egg-info/SOURCES.txt
+firmware.egg-info/dependency_links.txt
+firmware.egg-info/requires.txt
+firmware.egg-info/top_level.txt
