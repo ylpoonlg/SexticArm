@@ -4,7 +4,7 @@ This project aims to build a 6 degree-of-freedom robot arm which is able to move
 ## Installation
 ### web server
 The web server runs on Flask, gunicorn and nginx.
-In '/etc/nginx/nginx.conf' or other included '.conf' file, add
+In `/etc/nginx/nginx.conf` or other included `.conf` file, add
 
     server {
         listen <PORTNUM>;
@@ -15,14 +15,14 @@ In '/etc/nginx/nginx.conf' or other included '.conf' file, add
         }
     }
         
-where <PORTNUM> is the desired port to listen on.
+where \<PORTNUM\> is the desired port to listen on.
 Then start nginx server by
 
     sudo nginx
     
 to pass http requests to the gunicorn server.
 
-In 'SexticArm/web', run
+In `SexticArm/web`, run
 
     gunicorn main:app
 
