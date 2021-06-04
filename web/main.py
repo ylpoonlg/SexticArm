@@ -4,10 +4,16 @@ import firmware as fw
 
 app = Flask(__name__)
 
-@app.route("/")
+# --------ROUTE--------
+@app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('console.html')
 
+@app.route('/preview')
+def preview():
+    return render_template('preview.html')
+
+# --------REUESTS--------
 @app.route("/get_output", methods=['GET'])
 def get_output():
     if request.method == 'GET':
@@ -33,5 +39,5 @@ def clear_output():
         return 'Cleared'
     return 'Invalid Request Method'
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

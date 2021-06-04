@@ -11,10 +11,14 @@ setInterval(() => {
 var statusTimeout;
 function refreshConsole() {
     httpGET('/get_output', (data) => {
-        outputText.innerText = data;
+        try {
+            statusText.innerText = 'Connected'
+            statusText.style.color = '#00ff00';
+            outputText.innerText = data;
+        } catch {
+            
+        }
 
-        statusText.innerText = 'Connected'
-        statusText.style.color = '#00ff00';
         clearTimeout(statusTimeout);
     });
     statusTimeout = setTimeout(() => {
