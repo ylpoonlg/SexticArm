@@ -4,31 +4,14 @@ import firmware as fw
 
 app = Flask(__name__)
 
-msg = ''
-
 @app.route("/")
 def index():
-    global msg
     return render_template('index.html')
-
-@app.route("/mokka", methods=['POST', 'GET'])
-def mokka():
-    if request.method == 'POST':
-        global msg
-        msg += 'mokka '
-        print(msg)
-        return 'post'
-    elif request.method == 'GET':
-        return msg
-
-    return 'Invalid Request Method'
 
 @app.route("/get_output", methods=['GET'])
 def get_output():
     if request.method == 'GET':
         output = fw.functions.getConsole()
-        # print('the output is:')
-        # print(output)
         return output
 
     return 'Invalid Request Method'
@@ -50,5 +33,5 @@ def clear_output():
         return 'Cleared'
     return 'Invalid Request Method'
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)

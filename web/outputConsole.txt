@@ -1,6 +1,10 @@
-Command Received: G1 X60 Y80 Z100
->> Angles: [0, 53.1301, 90.0, 90.0, 0.0, 180.0, 233.1301]
->> Toolhead: [60.0, 80.0, 100.0]
-Command Received: G1 X60 Y80 Z100
->> Angles: [0, 53.1301, 90.0, 90.0, 0.0, 180.0, 233.1301]
->> Toolhead: [60.0, 80.0, 100.0]
+Command Received: G1
+>> Angles: [0, 90.0, 0.0, 0.0, 0.0, 0.0, 270.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+Command Received: G0
+>> Angles: [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+Command Received: 
+Command Received: G0 A140
+>> Angles: [0, 40.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [0.0, 0.0, 400.0]
