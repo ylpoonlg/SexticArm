@@ -1,0 +1,20 @@
+#status-box {
+    border: solid #aaa 2px;
+    border-radius: 10px;
+}
+
+#output-text {
+    width: 35rem;
+    height: 25rem;
+    border: solid #aaa 2px;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: scroll;
+
+    background: #3d4347;
+    color: #ededed;
+}
+
+.btn.outlined {
+    border: solid #aaa 1px;
+}

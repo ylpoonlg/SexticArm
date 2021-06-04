@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import sys
-from firmware.functions import *
-from firmware.lgcode import lgcodeReader
+import firmware as fw
 
 app = Flask(__name__)
 
@@ -27,7 +26,7 @@ def mokka():
 @app.route("/get_output", methods=['GET'])
 def get_output():
     if request.method == 'GET':
-        output = getConsole()
+        output = fw.functions.getConsole()
         # print('the output is:')
         # print(output)
         return output
@@ -37,10 +36,8 @@ def get_output():
 @app.route("/send_cmd", methods=['POST'])
 def send_cmd():
     cmd = str(request.data)[2:-1]
-    print(f'xxxxxxxxxxx {cmd}')
-
     if request.method == 'POST':
-        reader = lgcodeReader()
+        reader = fw.lgcode.lgcodeReader()
         reader.decExeCommand(cmd)
         return 'Command Sent'
 
@@ -49,7 +46,7 @@ def send_cmd():
 @app.route("/clear_output", methods=['POST'])
 def clear_output():
     if request.method == 'POST':
-        clearConsole()
+        fw.functions.clearConsole()
         return 'Cleared'
     return 'Invalid Request Method'
 

@@ -1,5 +1,44 @@
-const msgText = document.getElementById('msg-text');
+//==========================DOM============================
+const outputText = document.getElementById('output-text');
 const cmdInput = document.getElementById('cmd-input');
+const statusText = document.getElementById('status-text');
+
+//==========================INIT============================
+setInterval(() => {
+    refreshConsole();
+}, 1000)
+
+var statusTimeout;
+function refreshConsole() {
+    httpGET('/get_output', (data) => {
+        outputText.innerText = data;
+
+        statusText.innerText = 'Connected'
+        statusText.style.color = '#00ff00';
+        clearTimeout(statusTimeout);
+    });
+    statusTimeout = setTimeout(() => {
+        statusText.innerText = 'No Connection';
+        statusText.style.color = '#ff0000';
+    }, 3000);
+}
+
+
+
+function onSendCommand(e) {
+    console.log('send command: '+cmdInput.value);
+    httpPOST('/send_cmd', cmdInput.value, (response) => {
+        console.log(response);
+    });
+}
+
+function onClearConsole(e) {
+    httpPOST('/clear_output', null, ()=>{});
+}
+
+
+
+//==========================FUNCTIONS============================
 
 function httpGET(url, callback) {
     $.get(url, callback);
@@ -15,29 +54,3 @@ function httpPOST(url, data, callback) {
         error: callback
     }); 
 }
-
-
-httpGET('/get_output', (data, status) => {
-    msgText.innerText = data;
-});
-
-function refreshConsole() {
-    httpGET('/get_output', (data, status) => {
-        msgText.innerText = data;
-    });
-}
-
-function onSendCommand(e) {
-    console.log('send command: '+cmdInput.value);
-    httpPOST('/send_cmd', cmdInput.value, (response) => {
-        console.log(response);
-    });
-}
-
-function onClearConsole(e) {
-    httpPOST('/clear_output', null, ()=>{});
-}
-
-setInterval(() => {
-    refreshConsole();
-}, 1000)

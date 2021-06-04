@@ -18,6 +18,7 @@ class lgcodeReader():
 
     def decExeCommand(self, cmd):
         cmd = cmd.split(';')[0].strip('\n').upper()
+        log(f'Command Received: {cmd}')
         paramtrs = cmd.split(' ')
         if (len(paramtrs) == 0):
             return

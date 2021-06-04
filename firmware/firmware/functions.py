@@ -1,6 +1,9 @@
 import numpy as np
 import firmware.config as cf
 
+OUTPUT_FILE_PATH = './outputConsole.txt'
+OUTPUT_LINES_LIMIT = 50
+
 # Functions
 def degToRad(a):
     return a * np.pi / 180.0
@@ -17,14 +20,21 @@ def printA(a, msg):
 def log(msg, lvl=0):
     global outputConsole
     if cf.DEBUG_LOG_LEVEL >= lvl:
-        file = open('./outputConsole.txt', 'a')
+        # Log to file
+        file = open(OUTPUT_FILE_PATH, 'r')
+        lines = file.readlines()
+        if (len(lines) >= OUTPUT_LINES_LIMIT):
+            lines.pop(0)
+        file = open(OUTPUT_FILE_PATH, 'w+')
+        file.writelines(lines)
         file.write(f'{msg}\n')
+
         print(msg)
 
 def getConsole():
-    file = open('./outputConsole.txt', 'r')
+    file = open(OUTPUT_FILE_PATH, 'r')
     return file.read()
 
 def clearConsole():
-    file = open('./outputConsole.txt', 'w')
+    file = open(OUTPUT_FILE_PATH, 'w')
     file.write('')
