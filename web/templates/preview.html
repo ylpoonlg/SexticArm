@@ -2,7 +2,14 @@
 {%block title%}Preview{%endblock%}
 
 {%block content%}
-<div class="container">
+<script src="https://cdn.plot.ly/plotly-2.0.0-rc.3.min.js"></script>
+
+<div class="mx-auto my-3" style="width: 520px;">
     <h3>PREVIEW</h3>
+    <div id="plot" class="outlined-rnd">
+
+    </div>
 </div>
+
+<script src="../static/js/preview.js"></script>
 {%endblock%}

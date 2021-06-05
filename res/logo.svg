@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46667 135.46667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.45575242"
+     inkscape:cx="-482.71823"
+     inkscape:cy="493.6891"
+     inkscape:window-width="1882"
+     inkscape:window-height="1140"
+     inkscape:window-x="38"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path17597" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:43.0849px;line-height:1.25;font-family:Cantarell;-inkscape-font-specification:Cantarell;fill:#00e2ff;fill-opacity:1;stroke:none;stroke-width:1.07712"
+       x="6.1829696"
+       y="93.196915"
+       id="text1089"
+       transform="scale(1.0227886,0.97771915)"><tspan
+         sodipodi:role="line"
+         id="tspan1087"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Standard Symbols PS';-inkscape-font-specification:'Standard Symbols PS';fill:#00e2ff;fill-opacity:1;stroke-width:1.07712"
+         x="6.1829696"
+         y="93.196915">Sextic</tspan></text>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#00e2ff;stroke-width:3.175;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 10.060324,106.70617 H 126.00457"
+       id="path17515" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#00e2ff;stroke-width:3.175;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 10.060323,111.73927 H 126.00457"
+       id="path17515-2" />
+    <g
+       id="g19520"
+       transform="translate(0.50277167,-3.6512137)">
+      <path
+         id="path18074"
+         style="fill:#00e2ff;fill-opacity:1;stroke:none;stroke-width:0.999999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 137.73438,105.51172 c -26.72872,30.45843 -73.335583,86.10964 -82.978521,98.24023 -12.383901,15.57867 17.814268,42.78115 32.261719,28.66407 9.237146,-9.02593 52.255172,-62.23251 78.716802,-95.0586 a 29.568467,29.568467 0 0 1 -28.09571,-29.51367 29.568467,29.568467 0 0 1 0.0957,-2.33203 z"
+         transform="scale(0.26458334)" />
+      <path
+         id="path18074-0"
+         style="fill:#00e2ff;fill-opacity:1;stroke:none;stroke-width:0.89438px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 193.32031,93.574219 a 29.568467,29.568467 0 0 1 3.95508,14.769531 29.568467,29.568467 0 0 1 -12.78711,24.33984 c 33.31215,14.88182 82.61455,35.91811 95.20508,41.40821 17.03852,7.42964 31.4068,-23.407 16.02148,-32.34571 -11.48132,-6.67052 -68.89445,-33.1019 -102.39453,-48.171871 z"
+         transform="scale(0.26458334)" />
+    </g>
+    <circle
+       style="fill:#00e2ff;fill-opacity:1;stroke:none;stroke-width:0.115337;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path19587"
+       cx="44.997814"
+       cy="25.062981"
+       r="5.2173786" />
+    <path
+       style="fill:none;stroke:#00e2ff;stroke-width:3.175;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 78.415991,59.252066 V 39.698036"
+       id="path21118"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

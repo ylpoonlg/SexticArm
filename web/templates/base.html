@@ -33,10 +33,10 @@
         <ul class="navbar-nav mr-auto">
           <!---------**Nav Items**---------->
           <li class="nav-item">
-            <a class="nav-link active" href="/">Console</a>
+            <a class="nav-link" href="/">Console</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/preview">Preview</a>
+            <a class="nav-link" href="/preview">Preview</a>
           </li>
           <!---------^^Nav Items^^---------->
         </ul>
@@ -48,10 +48,16 @@
     <div class="container">
       <div class="row justify-content-center">
     
-        <div class="col-md-2 col-sm-10" style="overflow: hidden;">
+        <div class="col-md-3 col-sm-10" style="overflow: hidden;">
           <div class="my-3 px-2 py-3 outlined-rnd hidden">
-            <span>Server Status:</span> <br>
-            <span id="status-text"></span>
+            <h5>Server Status</h5>
+            <span id="status-text">Loading...</span>
+          </div>
+          <div class="my-3 px-2 py-3 outlined-rnd hidden">
+            <h5>Stepper Angles</h5>
+
+            <ul id="stepper-angles">
+            </ul>
           </div>
         </div>
     
