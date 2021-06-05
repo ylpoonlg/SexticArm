@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import sys
 import firmware as fw
+from firmware.functions import *
 
 app = Flask(__name__)
 machine = fw.lgcode.lgcodeReader()
@@ -17,8 +18,14 @@ def preview():
 # --------REUESTS--------
 @app.route('/get_status', methods=['GET'])
 def get_status():
+    global machine
+    status = machine.status
+    a = [0, degToRad(status['A1']), degToRad(status['A2']), degToRad(status['A3']),
+            degToRad(status['A4']), degToRad(status['A5']), degToRad(status['A6'])]
+    status['joints'] = fw.checking.getJointCoordinates(a)
+
     if request.method == 'GET':
-        return machine.status
+        return status
 
     return 'Invalid Request Method'
 
@@ -32,6 +39,7 @@ def get_output():
 
 @app.route('/send_cmd', methods=['POST'])
 def send_cmd():
+    global machine
     cmd = str(request.data)[2:-1]
     if request.method == 'POST':
         machine.decExeCommand(cmd)

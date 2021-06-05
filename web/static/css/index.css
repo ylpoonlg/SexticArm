@@ -14,10 +14,19 @@
     overflow: hidden;
 }
 
-.navbar-brand {
-    font-family: 'GFS Didot', serif;
+#navbar-brand-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+#navbar-brand-text {
+    font-family: 'GFS Didot', serif;
+    font-size: 1.6rem;
+    color: #00e2ff;
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
 
 /*---------Pages-----------*/
 #stepper-angles {

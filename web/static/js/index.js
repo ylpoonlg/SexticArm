@@ -1,11 +1,10 @@
 //==========================DOM============================
-const outputText = document.getElementById('output-text');
-const cmdInput = document.getElementById('cmd-input');
 const statusText = document.getElementById('status-text');
 const stepperAngles = document.getElementById('stepper-angles');
 
+
 //==========================STATUS============================
-setInterval(() => {
+let statusInterval = setInterval(() => {
     refreshStatus();
 }, 1000)
 
@@ -13,6 +12,7 @@ var statusTimeout;
 function refreshStatus() {
     httpGET('/get_status', (data) => {
         //console.log('status: '+JSON.stringify(data));
+        serverStatus = data;
 
         statusText.innerText = 'Connected'
         statusText.style.color = '#00ff00';
@@ -34,20 +34,8 @@ function refreshStatus() {
     }, 3000);
 }
 
-
-//==========================FUNCTIONS============================
-
-function httpGET(url, callback) {
-    $.get(url, callback);
-}
-
-function httpPOST(url, data, callback) {
-    $.ajax({
-        url: url,
-        type: 'POST',
-        data: data,
-        contentType: 'application/json; charset=utf-8',
-        success: callback,
-        error: callback
-    }); 
-}
+setTimeout(() => {
+    clearInterval(statusInterval);
+    statusText.innerText = 'Timed out';
+    statusText.style.color = '#ffaa00';
+}, SERVER_TIMEOUT);
