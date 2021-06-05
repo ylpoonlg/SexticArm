@@ -9,6 +9,7 @@ import firmware.robot as robot
 
 class lgcodeReader():
     def __init__(self):
+        # everything in degrees
         self.status = {
             'X': 0, 'Y': 0, 'Z': cf.L1 + cf.L2 + cf.L3 + cf.L4,
             'P': 0, 'E': 90, 'R': 0,
@@ -29,7 +30,7 @@ class lgcodeReader():
                 if (p[0] == 'A'):
                     instr = p[0:2]
                     op = float(p[2::])
-                    self.status[instr] = degToRad(op)
+                    self.status[instr] = op
 
             G0( self.status['A1'], self.status['A2'], self.status['A3'],
                 self.status['A4'], self.status['A5'], self.status['A6'],
@@ -46,17 +47,18 @@ class lgcodeReader():
             for p in paramtrs:
                 op = float(p[1::])
                 self.status[p[0]] = op
+            
             G1( self.status['X'], self.status['Y'], self.status['Z'],
                 self.status['P'], self.status['E'], self.status['R'],
                 self.status['F'] )
 
             # Update angles as well
             a = ik.getAngles( self.status['X'], self.status['Y'], self.status['Z'],
-                              self.status['P'], self.status['E'], self.status['R'])
+                degToRad(self.status['P']), degToRad(self.status['E']), degToRad(self.status['R']))
 
-            self.status['A1'], self.status['A2'] = a[0], a[1]
-            self.status['A3'], self.status['A4'] = a[2], a[3]
-            self.status['A5'], self.status['A6'] = a[4], a[5]
+            self.status['A1'], self.status['A2'] = radToDeg(a[0]), radToDeg(a[1])
+            self.status['A3'], self.status['A4'] = radToDeg(a[2]), radToDeg(a[3])
+            self.status['A5'], self.status['A6'] = radToDeg(a[4]), radToDeg(a[5])
             
 
     def readFile(self, path):
@@ -75,8 +77,8 @@ class lgcodeReader():
 #       LGCODE COMMANDS
 #-------------------------------------------------------------
 def G0(a1, a2, a3, a4, a5, a6, F):
-    a = [0, a1, a2, a3, a4, a5, a6]
-    a_deg = [radToDeg(a1), radToDeg(a2), radToDeg(a3), radToDeg(a4), radToDeg(a5), radToDeg(a6)]
+    a_deg = [a1, a2, a3, a4, a5, a6]
+    a = [0, degToRad(a1), degToRad(a2), degToRad(a3), degToRad(a4), degToRad(a5), degToRad(a6)]
     printA(a_deg, '>> Angles: ')
     J6_x, J6_y, J6_z = chk.getJointCoordinates(a)[3]
     printA([J6_x, J6_y, J6_z], '>> Toolhead: ')
@@ -88,4 +90,5 @@ def G0(a1, a2, a3, a4, a5, a6, F):
 def G1(Tx, Ty, Tz, Tap, Tae, Tar, F):
     Tap, Tae, Tar = degToRad(Tap), degToRad(Tae), degToRad(Tar) # convert to radian
     a1, a2, a3, a4, a5, a6 = ik.getAngles(Tx, Ty, Tz, Tap, Tae, Tar)
-    G0(a1, a2, a3, a4, a5, a6, F)
+    G0( radToDeg(a1), radToDeg(a2), radToDeg(a3),
+        radToDeg(a4), radToDeg(a5), radToDeg(a6), F)
