@@ -1,7 +1,7 @@
 const plot = document.getElementById('plot');
 
-var lastJoints = [];
-var lastCamPos = {};
+var lastJoints = []; // to store last joint positions. If unchanged, graph will not be plotted again
+var lastCamPos = {}; // to reset to the same camera position when refreshing the plot
 
 function resizePlot() {
     let cw = $('#plot').width();
@@ -9,10 +9,18 @@ function resizePlot() {
     lastJoints = [];
     plotRefresh();
 }
-resizePlot();
+
+// wait for serverStatus to load then resize plot
+// refresh every one second
+var resizePlotInterval = setInterval(() => {
+    if (serverStatus) {
+        resizePlot();
+        clearInterval(resizePlotInterval);
+    }
+}, 1000);
 window.addEventListener("resize", resizePlot);
 
-
+// Use vis.js to plot 3dgraph
 function visPlot(J1, J2, J3, J6) {
     let data = new vis.DataSet();
     data.add({ x: 0, y: 0, z: 0, });
@@ -48,8 +56,9 @@ function visPlot(J1, J2, J3, J6) {
     graph3d.on('cameraPositionChange', onCameraPositionChange);
 }
 
+function plotRefresh(e) {
+    let joints = serverStatus.joints;
 
-function plotArm(joints, callback) {
     if (JSON.stringify(joints) == JSON.stringify(lastJoints)) return;
     lastJoints = joints;
     let J1 = joints[0];
@@ -59,14 +68,7 @@ function plotArm(joints, callback) {
 
     visPlot(J1, J2, J3, J6);
 
-    callback();
-}
-
-function plotRefresh(e) {
-    let joints = serverStatus.joints;
-    plotArm(joints, () => {
-        console.log('Plot loaded');
-    });
+    console.log('Plot loaded');
 }
 
 let plotInterval = setInterval(() => {

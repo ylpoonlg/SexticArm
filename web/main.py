@@ -12,6 +12,10 @@ machine = fw.lgcode.lgcodeReader()
 def index():
     return render_template('console.html')
 
+@app.route('/control')
+def control():
+    return render_template('control.html')
+
 @app.route('/preview')
 def preview():
     return render_template('preview.html')

@@ -16,3 +16,6 @@ Command Received: G0
 Command Received: G1 X20 Y60 Z200
 >> Angles: [71.5651, 18.4349, 143.1301, 360.0, 198.4349, 251.5651]
 >> Toolhead: [20.0, 60.0, 200.0]
+Command Received: G1 X20 Y60 Z200
+>> Angles: [71.5651, 18.4349, 143.1301, 360.0, 198.4349, 251.5651]
+>> Toolhead: [20.0, 60.0, 200.0]
