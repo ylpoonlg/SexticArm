@@ -1,3 +1,51 @@
+/*------------Bootstrap-------------*/
+/*Override*/
+$success: #00ca00;
 
+/*Original bootstrap*/
+@import "../bootstrap-5.0.1/scss/bootstrap";
 
-@import "../bootstrap-5.0.1/scss/bootstrap.scss"
+/*------------Pages--------------*/
+@import "./console.scss";
+@import "./control.scss";
+@import "./preview.scss";
+
+/*------------Main-------------*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+html, body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.outlined-rnd {
+    border: solid #aaa 1px;
+    border-radius: 10px;
+}
+
+.hidden {
+    overflow: hidden;
+}
+
+#navbar-brand-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navbar-brand-text {
+    font-family: 'GFS Didot', serif;
+    font-size: 1.6rem;
+    color: #00e2ff;
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+#stepper-angles {
+    margin: 0;
+    padding: 0 1rem;
+    list-style-type: none;
+    color: #070044;
+    font-family: 'Roboto Mono', monospace;
+}
