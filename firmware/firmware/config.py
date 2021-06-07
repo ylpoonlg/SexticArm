@@ -4,7 +4,7 @@ DEBUG_LOG_LEVEL = 0
 #   INPUT FILE
 #------------------------------------------
 # Absolute path is preferred
-SCRIPT_FOLDER_PATH = '/media/LG/Robotics/SixDoF/scripts/'
+SCRIPT_FOLDER_PATH = '/media/LG/Robotics/SexticArm/scripts/'
 
 #------------------------------------------
 #   MACHINE SETTINGS

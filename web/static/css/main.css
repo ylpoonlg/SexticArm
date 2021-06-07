@@ -7438,8 +7438,23 @@ textarea.form-control-lg {
   min-height: 10rem;
   padding: 0.8rem; }
 
-#file-btn {
-  color: #ffffff; }
+#select-file-input {
+  display: none; }
+
+#select-file-btn:hover {
+  color: white; }
+
+.myfiles-ls-item {
+  height: 2.6rem;
+  padding: 0.4rem;
+  border-bottom: solid #dfdfdf 1px; }
+
+.myfiles-ls-item:hover {
+  background-color: #dfdfdf;
+  cursor: pointer; }
+
+.myfiles-ls-del-btn {
+  margin: 0; }
 
 #plot {
   height: auto;

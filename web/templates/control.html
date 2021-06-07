@@ -14,7 +14,8 @@
 
   <!----------Control buttons----------->
   <div class="row my-4">
-    <div class="col-6">
+    <!--Left-->
+    <div class="col-12 col-sm-6">
       <div class="row justify-content-center">
         <button class="btn btn-outline-dark ctrl-btn">U</button>
       </div>
@@ -30,7 +31,8 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <!--Right-->
+    <div class="col-12 col-sm-6">
       <div class="row justify-content-center">
         <button class="btn btn-outline-dark ctrl-btn">U</button>
       </div>
@@ -50,7 +52,28 @@
 
   <!------------Run from file-------------->
   <div class="row justify-content-center">
-    <button id="file-btn" class="btn btn-success">Select a .lgcode file</button>
+    <div class="col-12 col-sm-6">
+      <button id="select-file-btn" class="btn btn-outline-success w-100 my-1" onclick="onSelectBtnClick();">Select a .lgcode file</button>
+      <input id="select-file-input" type="file" onchange="onSelectFile();" />
+    </div>
+    <div class="col-12 col-sm-6">
+      <button id="upload-btn" class="btn btn-success w-100 my-1" style="color: white;" onclick="onUploadFile();">Upload File</button>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6">
+      <button id="run-file-btn" class="btn btn-primary w-100 my-1" onclick="">Run</button>
+    </div>
+    <div class="col-12 col-sm-6">
+      <button id="stop-file-btn" class="btn btn-danger w-100 my-1" disabled onclick="">Stop</button>
+    </div>
+  </div>
+
+  <div class="outlined-rnd p-3 mt-4">
+    <h4>Files</h4>
+    <div id="myfiles-ls">
+    </div>
   </div>
     
 </div>

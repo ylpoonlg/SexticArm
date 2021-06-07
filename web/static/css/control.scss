@@ -9,6 +9,27 @@
     padding: 0.8rem;
 }
 
-#file-btn {
-    color: #ffffff;
+#select-file-input {
+    display: none;
+}
+
+#select-file-btn:hover {
+    color: white;
+}
+
+$myfiles-ls-shade: #dfdfdf;
+$myfiles-item-height: 2.6rem;
+.myfiles-ls-item {
+    height: $myfiles-item-height;
+    padding: 0.4rem;
+    border-bottom: solid $myfiles-ls-shade 1px;
+}
+
+.myfiles-ls-item:hover {
+    background-color: $myfiles-ls-shade;
+    cursor: pointer;
+}
+
+.myfiles-ls-del-btn {
+    margin: 0;
 }
