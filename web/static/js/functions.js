@@ -16,8 +16,8 @@ function httpPOST(url, data, callback) {
 }
 
 const SERVER_TIMEOUT = 30*60*1000; // thirty minutes
-var serverStatus;
+var serverStatus = {};
 
 httpGET('/get_status', (data) => {
-serverStatus = data;
+    serverStatus = data;
 });

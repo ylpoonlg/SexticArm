@@ -29,7 +29,7 @@ function refreshStatus() {
         `;
     });
     statusTimeout = setTimeout(() => {
-        statusText.innerText = 'No Connection';
+        statusText.innerText = 'Disconnected';
         statusText.style.color = '#ff0000';
     }, 3000);
 }

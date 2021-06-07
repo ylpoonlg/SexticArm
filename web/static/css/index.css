@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+
+html, body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
 
 .btn.outlined {
     border: solid #aaa 1px;
@@ -46,8 +51,8 @@
 }
 
 #plot {
-    height: 520px;
-    width: 520px;
+    height: auto;
+    width: 100%;
     padding: 5px;
     margin: auto;
 }

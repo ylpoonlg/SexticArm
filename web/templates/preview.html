@@ -6,11 +6,14 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script>
 
-<div class="mx-auto my-3" style="width: 520px;">
-    <h3>PREVIEW</h3>
-    <div id="plot" class="outlined-rnd">
-
+<div class="mx-auto my-3" style="max-width: 520px;">
+    <div class="row mb-2">
+        <div class="col"><h3>Preview</h3></div>
+        <div class="col">
+            <button class="btn outlined" onclick="plotRefresh()">Refresh</button>
+        </div>
     </div>
+    <div id="plot" class="outlined-rnd"></div>
 </div>
 
 <script src="../static/js/preview.js"></script>

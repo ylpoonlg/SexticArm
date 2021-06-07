@@ -4,6 +4,7 @@ import firmware as fw
 from firmware.functions import *
 
 app = Flask(__name__)
+
 machine = fw.lgcode.lgcodeReader()
 
 # --------ROUTE--------
