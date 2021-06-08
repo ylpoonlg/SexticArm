@@ -80,6 +80,19 @@ def upload_file():
 
     return 'Invalid Request Method'
 
+@app.route('/del_file', methods=['POST'])
+def del_file():
+    if request.method == 'POST':
+        fileName = str(request.data)[2:-1]
+        file = fw.config.SCRIPT_FOLDER_PATH+fileName
+        print(file)
+        if os.path.exists(file):
+            os.remove(file)
+            return 'Deleted'
+        return 'File not found'
+    
+    return 'Invalid Request Method'
+
 @app.route('/get_files', methods=['GET'])
 def get_files():
     if request.method == 'GET':

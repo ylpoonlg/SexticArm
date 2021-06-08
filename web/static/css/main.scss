@@ -1,5 +1,6 @@
 /*------------Bootstrap-------------*/
 /*Override*/
+$primary: #0088f1;
 $success: #00ca00;
 
 /*Original bootstrap*/
@@ -15,8 +16,13 @@ $success: #00ca00;
 @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
 
-html, body {
+body {
     font-family: 'Source Sans Pro', sans-serif;
+    padding-bottom: 2rem;
+}
+
+.navbar {
+    background: $primary;
 }
 
 .outlined-rnd {
@@ -42,10 +48,7 @@ html, body {
     margin-right: 0;
 }
 
-#stepper-angles {
-    margin: 0;
-    padding: 0 1rem;
-    list-style-type: none;
+.data-mono {
     color: #070044;
     font-family: 'Roboto Mono', monospace;
 }

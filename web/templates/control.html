@@ -8,8 +8,6 @@
 
   <!------------Info Box------------->
   <div id="info-box" class="outlined-rnd">
-    <div>Some Info</div>
-    <div>More Info</div>
   </div>
 
   <!----------Control buttons----------->
@@ -51,28 +49,37 @@
 
 
   <!------------Run from file-------------->
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-6">
-      <button id="select-file-btn" class="btn btn-outline-success w-100 my-1" onclick="onSelectBtnClick();">Select a .lgcode file</button>
-      <input id="select-file-input" type="file" onchange="onSelectFile();" />
-    </div>
-    <div class="col-12 col-sm-6">
-      <button id="upload-btn" class="btn btn-success w-100 my-1" style="color: white;" onclick="onUploadFile();">Upload File</button>
-    </div>
-  </div>
-
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-6">
-      <button id="run-file-btn" class="btn btn-primary w-100 my-1" onclick="">Run</button>
-    </div>
-    <div class="col-12 col-sm-6">
-      <button id="stop-file-btn" class="btn btn-danger w-100 my-1" disabled onclick="">Stop</button>
-    </div>
-  </div>
-
   <div class="outlined-rnd p-3 mt-4">
     <h4>Files</h4>
-    <div id="myfiles-ls">
+    
+    <div>
+      <div class="container" style="height: 38px;">
+        <strong><span id="cur-file-text">No file is selected...</span></strong>
+        <button id="desel-btn" class="btn" hidden style="margin-left: 0.5rem;" onclick="onDeselectFile();"><i class="bi bi-eraser-fill"></i></button>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6">
+          <button id="select-file-btn" class="btn btn-outline-success w-100 my-1" onclick="onSelectBtnClick();">Select a .lgcode file</button>
+          <input id="select-file-input" type="file" onchange="onSelectFile();" />
+        </div>
+        <div class="col-12 col-sm-6">
+          <button id="upload-btn" class="btn btn-success w-100 my-1" style="color: white;" onclick="onUploadFile();">Upload File</button>
+        </div>
+      </div>
+  
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6">
+          <button id="run-file-btn" class="btn btn-primary w-100 my-1" disabled
+            onclick="runFile();" style="color: white;">Run File</button>
+        </div>
+        <div class="col-12 col-sm-6">
+          <button id="stop-file-btn" class="btn btn-danger w-100 my-1" disabled
+            onclick="stopFile();">Stop</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="myfiles-ls" class="mt-3">
     </div>
   </div>
     

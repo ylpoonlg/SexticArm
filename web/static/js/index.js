@@ -1,12 +1,11 @@
 //==========================DOM============================
 const statusText = document.getElementById('status-text');
-const stepperAngles = document.getElementById('stepper-angles');
-
+const posText = document.getElementById('pos-text');
 
 //==========================STATUS============================
 let statusInterval = setInterval(() => {
     refreshStatus();
-}, 1000)
+}, 1000);
 
 var statusTimeout;
 function refreshStatus() {
@@ -18,14 +17,20 @@ function refreshStatus() {
         statusText.style.color = '#00ff00';
         clearTimeout(statusTimeout);
 
-        let DEC_PLACE = 4;
-        stepperAngles.innerHTML = `
-            <li> a1 = ${data.A1.toFixed(DEC_PLACE)} </li>
-            <li> a2 = ${data.A2.toFixed(DEC_PLACE)} </li>
-            <li> a3 = ${data.A3.toFixed(DEC_PLACE)} </li>
-            <li> a4 = ${data.A4.toFixed(DEC_PLACE)} </li>
-            <li> a5 = ${data.A5.toFixed(DEC_PLACE)} </li>
-            <li> a6 = ${data.A6.toFixed(DEC_PLACE)} </li>
+        let DEC_PLACE = 2;
+        posText.innerHTML = `
+            <h5><strong>Position</strong></h5>
+            <div class="data-mono ms-3 mb-2">
+                <div> X = ${serverStatus.X.toFixed(DEC_PLACE)} </div>
+                <div> Y = ${serverStatus.Y.toFixed(DEC_PLACE)} </div>
+                <div> Z = ${serverStatus.Z.toFixed(DEC_PLACE)} </div>
+            </div>
+            <h5><strong>Rotation</strong></h5>
+            <div class="data-mono ms-3">
+                <div> P = ${serverStatus.P.toFixed(DEC_PLACE)} </div>
+                <div> E = ${serverStatus.E.toFixed(DEC_PLACE)} </div>
+                <div> R = ${serverStatus.R.toFixed(DEC_PLACE)} </div>
+            </div>
         `;
     });
     statusTimeout = setTimeout(() => {
