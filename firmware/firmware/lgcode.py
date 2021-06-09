@@ -1,5 +1,5 @@
 import numpy as np
-import os
+import os, time
 import firmware.config as cf
 import firmware.checking as chk
 from firmware.functions import *
@@ -69,6 +69,7 @@ class lgcodeReader():
         log('________STARTING________', 0)
         for line in lines:
             self.decExeCommand(line)
+            time.sleep(2)
         log('________FINISHED________\n', 0)
 
 

@@ -138,6 +138,13 @@ function onDelFile(event, fileName) {
 function runFile() {
     runButton.setAttribute('disabled', '');
     stopButton.removeAttribute('disabled');
+
+    httpPOST('/run_file', curFile, (response) => {
+        console.log('Run File Response: '+response);
+        runButton.removeAttribute('disabled');
+        stopButton.setAttribute('disabled', '');    
+    })
+    console.log('Continue after run file');
 }
 
 function stopFile() {

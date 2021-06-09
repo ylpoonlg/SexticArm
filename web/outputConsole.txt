@@ -1,0 +1,32 @@
+Command Received: G0 A10 A20 A30 A40 A50 A60
+>> Angles: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+>> Running script at /media/LG/Robotics/SexticArm/scripts/default.lgcode...
+________STARTING________
+Command Received: G1 X80 Y50 Z150 P60 E25 R0 F200
+>> Angles: [10.6236, 37.9844, 143.8507, 129.953, 116.1868, 178.4479]
+>> Toolhead: [80.0, 50.0, 150.0]
+Command Received: G1 X60 Y50 Z150 P60 E25 R0 F200
+>> Angles: [16.068, 41.3135, 154.4445, 129.2301, 125.7316, 166.5785]
+>> Toolhead: [60.0, 50.0, 150.0]
+Command Received: G1 X20 Y50 Z150 P60 E25 R0 F200
+>> Angles: [103.8795, 69.1829, 166.297, 267.9947, 141.054, 245.3053]
+>> Toolhead: [20.0, 50.0, 150.0]
+Command Received: G1 X-20 Y50 Z150 P60 E25 R0 F200
+>> Angles: [165.8484, 39.7803, 151.7518, 290.5591, 111.3833, 191.9194]
+>> Toolhead: [-20.0, 50.0, 150.0]
+Command Received: G1 X-40 Y50 Z150 P60 E25 R0 F200
+>> Angles: [170.2596, 37.9566, 140.8586, 289.7356, 115.4052, 178.7695]
+>> Toolhead: [-40.0, 50.0, 150.0]
+Command Received: 
+Command Received: G1 X-20 Y60 Z150 P60 E25 R0 F200
+>> Angles: [154.0541, 39.0598, 149.8999, 278.1277, 114.0468, 189.7943]
+>> Toolhead: [-20.0, 60.0, 150.0]
+Command Received: G1 X-20 Y40 Z150 P60 E25 R0 F200
+>> Angles: [178.9851, 40.12, 152.4567, 303.295, 108.4724, 191.5849]
+>> Toolhead: [-20.0, 40.0, 150.0]
+Command Received: G1 X-20 Y20 Z150 P60 E25 R0 F200
+>> Angles: [204.2817, 39.1775, 150.247, 326.358, 107.2429, 185.7446]
+>> Toolhead: [-20.0, 20.0, 150.0]
+________FINISHED________
+

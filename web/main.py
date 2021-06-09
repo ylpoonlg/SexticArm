@@ -101,5 +101,16 @@ def get_files():
     
     return 'Invalid Request Method'
 
+@app.route('/run_file', methods=['POST'])
+def run_file():
+    if request.method == 'POST':
+        fileName = str(request.data)[2:-1]
+        filePath = fw.config.SCRIPT_FOLDER_PATH + fileName
+        machine.readFile(filePath)
+        print('Finished running file')
+        return 'Finished running'
+
+    return 'Invalid Request Method'
+
 if __name__ == '__main__':
     app.run(debug=True)

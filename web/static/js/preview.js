@@ -73,7 +73,7 @@ function plotRefresh(e) {
 
 let plotInterval = setInterval(() => {
     plotRefresh();
-}, 1500);
+}, 1000);
 
 // Server Timeout
 setTimeout(() => {
