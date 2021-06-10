@@ -3,3 +3,4 @@ docs/*
 !docs/6DOF.tex
 scripts/*
 env/*
+pienv/*
