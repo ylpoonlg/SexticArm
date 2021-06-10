@@ -8,7 +8,6 @@ setup(
    packages=['firmware'],
    install_requires=[
        "numpy",
-       "matplotlib",
-       "PyQt5"
+       "matplotlib"
    ],
 )

@@ -3,8 +3,8 @@ DEBUG_LOG_LEVEL = 0
 #------------------------------------------
 #   INPUT FILE
 #------------------------------------------
-# Absolute path is preferred
-SCRIPT_FOLDER_PATH = '/media/LG/Robotics/SexticArm/scripts/'
+#SCRIPT_FOLDER_PATH = '/media/LG/Robotics/SexticArm/scripts/'
+SCRIPT_FOLDER_PATH = '../scripts/'
 
 #------------------------------------------
 #   MACHINE SETTINGS
