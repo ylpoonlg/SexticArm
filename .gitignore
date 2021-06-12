@@ -2,7 +2,5 @@ docs/*
 !docs/6DOF.pdf
 !docs/6DOF.tex
 scripts/*
-#env/*
-env_/*
+env/*
 pienv/*
-outputConsole.txt
