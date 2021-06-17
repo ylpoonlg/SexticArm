@@ -34,7 +34,7 @@ class lgcodeReader():
 
 
     def decExeCommand(self, cmd):
-        cmd = cmd.split(';')[0].strip('\n').upper()
+        cmd = cmd.split(';')[0].strip('\n')
         log(f'Command Received: {cmd}')
         paramtrs = cmd.split(' ')
         if (len(paramtrs) == 0):
@@ -46,6 +46,9 @@ class lgcodeReader():
                     instr = p[0:2]
                     op = float(p[2::])
                     self.status[instr] = op
+                else:
+                    op = float(p[1::])
+                    self.status[p[0]] = op
 
             self.G0( self.status['A1'], self.status['A2'], self.status['A3'],
                 self.status['A4'], self.status['A5'], self.status['A6'],
@@ -96,10 +99,11 @@ class lgcodeReader():
 
     def moveMotors(self, a, F):
         if self.status['serial']:
-            print(f'Moving motors: {a}')
+            print(f'status: {self.status}')
             a_deg = [0, radToDeg(a[1]), radToDeg(a[2]), radToDeg(a[3]),
                         radToDeg(a[4]), radToDeg(a[5]), radToDeg(a[6])]
             serialCmd = f'M {a_deg[1]} {a_deg[2]} {a_deg[3]} {a_deg[4]} {a_deg[5]} {a_deg[6]} {F}\n'
+            print(f'serialCmd: {serialCmd}')
             self.ser.write(bytes(serialCmd.encode()))
 
 

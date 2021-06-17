@@ -7,7 +7,7 @@ const long STEPS_PER_REV = 200 * 16; // full * microsteps
 const int STEPPERS_REVERSE = -1; // [-1, 1] only
 const float STEPPERS_MAX_SPEED = 6000;
 const float STEPPERS_MIN_SPEED = 400;
-const float STEPPERS_ACCELERATION = 6000;
+const float STEPPERS_ACCELERATION = 50; // in steps per second squared
 const bool SHORTEST_PATH = false;
 
 
@@ -74,6 +74,19 @@ void loop() {
 
           if (SHORTEST_PATH)
             resetPosition();
+        } else if (cmd.charAt(0) == 'A') { // acceleration
+          String tmp = "";
+          long acc = STEPPERS_ACCELERATION;
+          for (int i=2; i<cmd.length(); i++) {
+            char ch = cmd.charAt(i);
+            if (ch == ' ' || ch == '\n') {
+              acc = tmp.toInt();
+              break;
+            } else {
+              tmp += ch;
+            }
+          }
+          setAcceleration(acc);
         }
   }
 
@@ -162,4 +175,16 @@ void resetPosition() {
   Serial.print("stepper2.curPos: ");
   Serial.println(stepper2.currentPosition());
   Serial.println();
+}
+
+void setAcceleration(long acc) {
+  Serial.println("Set Acceleration: "+String(acc));
+
+  // Set acceleration
+  stepper1.setAcceleration(acc);
+  stepper2.setAcceleration(acc);
+  stepper4.setAcceleration(acc);
+  stepper5.setAcceleration(acc);
+  stepper6.setAcceleration(acc);
+  stepper3.setAcceleration(acc);
 }

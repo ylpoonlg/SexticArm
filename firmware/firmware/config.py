@@ -15,4 +15,4 @@ L2 = 100
 L3 = 100
 L4 = 50
 
-DEFAULT_FEEDRATE = 200                          # (in mm/s)
+DEFAULT_FEEDRATE = 2                            # (in mm/s)
