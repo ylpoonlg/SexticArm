@@ -1,12 +1,15 @@
 #include <AccelStepper.h>
 #include <MultiStepper.h>
 
+
+// Configuration
 const long STEPS_PER_REV = 200 * 16; // full * microsteps
 const int STEPPERS_REVERSE = -1; // [-1, 1] only
-
 const float STEPPERS_MAX_SPEED = 6000;
 const float STEPPERS_MIN_SPEED = 400;
 const float STEPPERS_ACCELERATION = 6000;
+const bool SHORTEST_PATH = false;
+
 
 // AccelStepper(type, stepPin, dirPin);
 AccelStepper stepper1(AccelStepper::DRIVER, 22, 23);
@@ -20,9 +23,9 @@ AccelStepper stepper6(AccelStepper::DRIVER, 32, 33);
 
 MultiStepper steppers;
 
-// a[deg1, deg2, deg3, deg4, deg5, deg6, time (s), null, null, null]
-double a[10];
-long steps[6], lastSteps[6];
+// a[deg1, deg2, deg3, deg4, deg5, deg6, time (s)
+double a[7];
+long steps[6], lastSteps[6], pos[6];
 
 void setup() {
   Serial.begin(9600);
@@ -52,6 +55,10 @@ void setup() {
   steppers.addStepper(stepper5);
   steppers.addStepper(stepper6);
 }
+
+
+
+// Main
 void loop() {
 
   if (Serial.available()) {
@@ -59,18 +66,14 @@ void loop() {
         
         if (cmd.charAt(0) == 'M') { // move
           getAngles(cmd);
-          delayMicroseconds(10);
           getSteps();
-
-          steppers.moveTo(steps);
-          delayMicroseconds(10);
           setSpeed();
+
+          steppers.moveTo(pos);
           steppers.runSpeedToPosition();
-          
-          // reset last steps
-          for (int i=0; i<6; i++) {
-            lastSteps[i] = steps[i];
-          }
+
+          if (SHORTEST_PATH)
+            resetPosition();
         }
   }
 
@@ -95,13 +98,28 @@ void getAngles(String cmd) {
 }
 
 void getSteps() {
-  Serial.print("steps: ");
+  // reset last steps
+  for (int i=0; i<6; i++) {
+    lastSteps[i] = steps[i];
+  }
 
+  Serial.print("pos: ");
   for (int i=0; i<6; i++) {
     steps[i] = STEPS_PER_REV * a[i] / 360 * STEPPERS_REVERSE;
-    Serial.print(steps[i]);
+    pos[i] = steps[i];
+
+    if (SHORTEST_PATH) {
+      if (abs( lastSteps[i] + 360 - steps[i] ) < 180) {
+        pos[i] -= 360;
+      } else if (abs( steps[i] + 360 -  lastSteps[i]) < 180) {
+        pos[i] += 360;
+      }
+    }
+
+    Serial.print(pos[i]);
     Serial.print(", ");
   }
+  Serial.println();
   Serial.println();
 }
 
@@ -111,7 +129,7 @@ void setSpeed() {
 
   long maxStep = 0;
   for (int i=0; i<6; i++) {
-    maxStep = max( maxStep, abs(steps[i] - lastSteps[i]) );
+    maxStep = max( maxStep, abs(pos[i] - lastSteps[i]) );
   }
 
   Serial.print("maxStep: ");
@@ -121,6 +139,7 @@ void setSpeed() {
 
   Serial.print("maxSpeed: ");
   Serial.println(stepsPerSecond);
+  Serial.println();
 
   stepper1.setMaxSpeed(stepsPerSecond);
   stepper2.setMaxSpeed(stepsPerSecond);
@@ -128,4 +147,19 @@ void setSpeed() {
   stepper4.setMaxSpeed(stepsPerSecond);
   stepper5.setMaxSpeed(stepsPerSecond);
   stepper6.setMaxSpeed(stepsPerSecond);
+}
+
+void resetPosition() {
+  stepper1.setCurrentPosition(steps[0]);
+  stepper2.setCurrentPosition(steps[1]);
+  stepper3.setCurrentPosition(steps[2]);
+  stepper4.setCurrentPosition(steps[3]);
+  stepper5.setCurrentPosition(steps[4]);
+  stepper6.setCurrentPosition(steps[5]);
+
+  Serial.print("stepper1.curPos: ");
+  Serial.println(stepper1.currentPosition());
+  Serial.print("stepper2.curPos: ");
+  Serial.println(stepper2.currentPosition());
+  Serial.println();
 }
