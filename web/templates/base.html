@@ -60,20 +60,33 @@
 
     <script src="../static/js/functions.js"></script>
 
-    <!-------------Main Content------------->
+    <!-------------body------------->
     <div class="container">
       <div class="row justify-content-center">
         
         <!--Status Bar-->
         <div id="status-bar" class="col-lg-3 col-10 d-none d-lg-block hidden">
           <div class="my-3 px-2 py-3 outlined-rnd hidden">
-            <h5 class="d-inline">Server Status</h5>
-            <button class="btn" onclick="location.reload();"
-              style="margin-left: 0.8rem;">
-              <i class="bi bi-arrow-repeat"></i>
-            </button>
-            <br>
-            <span id="status-text" class="mx-3">Loading...</span>
+            <div>
+              <h5 class="d-inline">Server Status</h5>
+              <button class="btn" onclick="location.reload();"
+                style="margin-left: 0.8rem;">
+                <i class="bi bi-arrow-repeat"></i>
+              </button>
+              <br>
+              <span id="status-text" class="mx-3">Loading...</span>
+            </div>
+
+            <div class="mt-3">
+              <h5 class="d-inline">Serial Port</h5>
+              <button class="btn" onclick="reconnectSerial()"
+                style="margin-left: 0.8rem;">
+                <i class="bi bi-plug-fill"></i>
+              </button>
+              <br>
+              <input id="serial-input" class="form-control mx-auto my-2 w-75" type="text"></input>
+              <span id="serial-status-text" class="mx-3">Loading...</span>
+            </div>
           </div>
 
           <div class="my-3 p-3 outlined-rnd">

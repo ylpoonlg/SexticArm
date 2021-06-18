@@ -46,6 +46,14 @@ function refreshStatus() {
         statusText.style.color = '#00ff00';
         clearTimeout(statusTimeout);
 
+        if (serverStatus.serial) {
+            $('#serial-status-text').text('Connected');
+            $('#serial-status-text').css("color", "#00ff00");
+        } else {
+            $('#serial-status-text').text('Disconnected');
+            $('#serial-status-text').css("color", "#ff0000");
+        }
+
         let DEC_PLACE = 2;
         posText.innerHTML = `
             <h5><strong>Position</strong></h5>
@@ -73,3 +81,19 @@ setTimeout(() => {
     statusText.innerText = 'Timed out';
     statusText.style.color = '#ffaa00';
 }, SERVER_TIMEOUT);
+
+
+//===================SERIAL=====================
+const defaultSerialPort = JSON.parse(localStorage.sextic_settings)['base.serial'];
+$('#serial-input').val(defaultSerialPort);
+
+function reconnectSerial() {
+    const serialPort = $('#serial-input').val();
+    httpPOST('/send_cmd', `M0 ${serialPort}`, (response) => {
+        console.log(response);
+    });
+
+    let settings = JSON.parse(localStorage.sextic_settings);
+    settings['base.serial'] = serialPort;
+    localStorage.sextic_settings = JSON.stringify(settings);
+}
