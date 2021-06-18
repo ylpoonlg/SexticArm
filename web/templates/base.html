@@ -25,6 +25,12 @@
         </div>
       </a>
 
+
+      <button id="status-btn" class="d-block d-lg-none btn btn-primary"
+        style="color: white;">
+        <span><i class="bi bi-chevron-bar-expand"></i></span>
+      </button>
+
       <!----------Collapse button----------->
       <button class="navbar-toggler" type="button"
         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -32,6 +38,7 @@
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -53,11 +60,12 @@
 
     <script src="../static/js/functions.js"></script>
 
-    <!-------------Status bar------------->
+    <!-------------Main Content------------->
     <div class="container">
       <div class="row justify-content-center">
-    
-        <div class="col-lg-3 col-10" style="overflow: hidden;">
+        
+        <!--Status Bar-->
+        <div id="status-bar" class="col-lg-3 col-10 d-none d-lg-block hidden">
           <div class="my-3 px-2 py-3 outlined-rnd hidden">
             <h5 class="d-inline">Server Status</h5>
             <button class="btn" onclick="location.reload();"
@@ -68,13 +76,13 @@
             <span id="status-text" class="mx-3">Loading...</span>
           </div>
 
-
           <div class="my-3 p-3 outlined-rnd">
             <div id="pos-text" class="data-mono">
             </div>
           </div>
         </div>
-    
+        
+        <!--Page Content-->
         <div class="col-lg-8 col-10">
           {%block content%}{%endblock%}
         </div>

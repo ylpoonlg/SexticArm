@@ -46,6 +46,43 @@ setTimeout(() => {
 }, SERVER_TIMEOUT);
 
 
+//--------TABS---------
+hideAllTabs();
+const defaultTab = JSON.parse(localStorage.sextic_settings)['control.defaultTab'];
+$('#'+defaultTab).show();
+
+$('#position-btn').click(() => {
+    hideAllTabs();
+    $('#position-tab').show();
+    saveDefaultTab('position-tab');
+});
+
+$('#angle-btn').click(() => {
+    hideAllTabs();
+    $('#angle-tab').show();
+    saveDefaultTab('angle-tab');
+});
+
+$('#file-btn').click(() => {
+    hideAllTabs();
+    $('#file-tab').show();
+    saveDefaultTab('file-tab');
+});
+
+function hideAllTabs() {
+    $('#position-tab').hide();
+    $('#angle-tab').hide();
+    $('#file-tab').hide();
+}
+
+function saveDefaultTab(tab) {
+    let settings = JSON.parse(localStorage.sextic_settings);
+    settings['control.defaultTab'] = tab;
+    localStorage.sextic_settings = JSON.stringify(settings);
+}
+
+
+// --------FILE----------
 function onSelectBtnClick() {
     fileInput.click();
 }

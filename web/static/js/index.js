@@ -1,8 +1,36 @@
 //==========================DOM============================
+const statusBtn = document.getElementById('status-btn');
+const statusBar = document.getElementById('status-bar');
 const statusText = document.getElementById('status-text');
 const posText = document.getElementById('pos-text');
 
+
+//==========================SETTINGS==============================
+if (!localStorage.sextic_settings) {
+    localStorage.sextic_settings = JSON.stringify({
+        'base.hideStatus': true,
+        'control.defaultTab': 'position-tab',
+    });
+}
+
+
 //==========================STATUS============================
+if (!JSON.parse(localStorage.sextic_settings)['base.hideStatus']) {
+    statusBar.classList.replace('d-none', 'd-block');
+}
+
+statusBtn.onclick = () => {
+    let settings = JSON.parse(localStorage.sextic_settings);
+    if (statusBar.classList.contains('d-none')) {
+        statusBar.classList.replace('d-none', 'd-block');
+        settings['base.hideStatus'] = false;
+    } else if (statusBar.classList.contains('d-block')) {
+        statusBar.classList.replace('d-block', 'd-none');
+        settings['base.hideStatus'] = true;
+    }
+    localStorage.sextic_settings = JSON.stringify(settings);
+}
+
 let statusInterval = setInterval(() => {
     refreshStatus();
 }, 1000);
