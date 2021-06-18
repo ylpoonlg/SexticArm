@@ -9,9 +9,9 @@
   <!-------------Tabs-------------->
   <div class="mt-2">
     <div class="btn-group mb-1" role="group" aria-label="Control Mode">
-      <button id="position-btn" type="button" class="btn btn-primary" style="color: white;">Position</button>
-      <button id="angle-btn" type="button" class="btn btn-primary" style="color: white;">Angle</button>
-      <button id="file-btn" type="button" class="btn btn-primary" style="color: white;">File</button>
+      <button id="position-btn" type="button" class="btn btn-outline-secondary">Position</button>
+      <button id="angle-btn" type="button" class="btn btn-outline-secondary">Angle</button>
+      <button id="file-btn" type="button" class="btn btn-outline-secondary">File</button>
     </div>
 
 
@@ -58,7 +58,7 @@
           <div class="row justify-content-center">
             <button class="btn btn-outline-dark ctrl-btn"
               onclick="sendControl('R4')"><i class="bi bi-arrow-90deg-left"></i></button>
-            <div class="ctrl-btn"><i class="bi bi-arrow-repeat"></i></div>
+            <div class="ctrl-btn" style="line-height: 2.5rem;"><i class="bi bi-arrow-repeat"></i></div>
             <button class="btn btn-outline-dark ctrl-btn"
               onclick="sendControl('R6')"><i class="bi bi-arrow-90deg-right"></i></button>
           </div>
@@ -76,7 +76,54 @@
 
     <!-----------Stepper Angles------------->
     <div id="angle-tab" class="outlined-rnd p-3">
-      <h4>Stepper Angles</h4>
+      <form id="angles-form">
+        <div class="row mb-3">
+          <div class="col">
+            <h4>Stepper Angles</h4>
+          </div>
+          <div class="col">
+            <button id="submit-angles-btn" type="button" class="btn btn-success color-white">Submit</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+              <div class="mb-1">
+                <label class="form-label" for="a1-input">A1</label>
+                <input id="a1-input" name="a1" class="form-control" type="number"
+                  min="0" max="360" value="0">
+              </div>
+              <div class="mb-1">
+                <label class="form-label" for="a2-input">A2</label>
+                <input id="a2-input" name="a2" class="form-control" type="number"
+                  min="0" max="90" value="0">
+              </div>
+              <div class="mb-1">
+                <label class="form-label" for="a3-input">A3</label>
+                <input id="a3-input" name="a3" class="form-control" type="number"
+                  min="0" max="90" value="0">
+              </div>
+          </div>
+
+          <div class="col-6">
+            <div class="mb-1">
+              <label class="form-label" for="a1-input">A4</label>
+              <input id="a4-input" name="a4" class="form-control" type="number"
+                min="0" max="360" value="0">
+            </div>
+            <div class="mb-1">
+              <label class="form-label" for="a2-input">A5</label>
+              <input id="a5-input" name="a5" class="form-control" type="number"
+                min="0" max="90" value="0">
+            </div>
+            <div class="mb-1">
+              <label class="form-label" for="a3-input">A6</label>
+              <input id="a6-input" name="a6" class="form-control" type="number"
+                min="0" max="360" value="0">
+            </div>
+        </div>
+            
+        </div>
+      </form>
     </div>
 
 

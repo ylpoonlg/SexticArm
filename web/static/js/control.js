@@ -145,6 +145,25 @@ function sendControl(btn) {
 }
 
 
+
+
+//----------ANGLE-----------
+
+$('#submit-angles-btn').click(() => {
+    let a1 = $('input[name=a1]').val();
+    let a2 = $('input[name=a2]').val();
+    let a3 = $('input[name=a3]').val();
+    let a4 = $('input[name=a4]').val();
+    let a5 = $('input[name=a5]').val();
+    let a6 = $('input[name=a6]').val();
+
+    const cmd = `G0 A1${a1} A2${a2} A3${a3} A4${a4} A5${a5} A6${a6}`;
+    httpPOST('/send_cmd', cmd, (response) => {
+        console.log(response);
+    });
+});
+
+
 //--------FILE----------
 function onSelectBtnClick() {
     fileInput.click();

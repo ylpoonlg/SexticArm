@@ -52,3 +52,10 @@ body {
     color: #070044;
     font-family: 'Roboto Mono', monospace;
 }
+
+.color-white {
+    color: white;
+    &:hover, &:active, &:focus {
+        color: white;
+    }
+}
