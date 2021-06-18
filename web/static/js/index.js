@@ -10,6 +10,7 @@ if (!localStorage.sextic_settings) {
     localStorage.sextic_settings = JSON.stringify({
         'base.hideStatus': true,
         'base.serial': '/dev/ttyACM0',
+        'console.autoScroll': true,
         'control.defaultTab': 'position',
     });
 }

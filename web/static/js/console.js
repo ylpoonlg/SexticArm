@@ -6,6 +6,8 @@ if (!sessionStorage.sextic_cmd) sessionStorage.sextic_cmd = '[]';
 var currentCmd = -1;
 cmdInput.value = '';
 
+let isAutoScroll = !JSON.parse(localStorage.sextic_settings)['console.autoScroll'];
+
 let consoleInterval = setInterval(() => {
     refreshConsole();
 }, 1000)
@@ -17,6 +19,9 @@ function refreshConsole() {
             outputText.innerText = data;
             outputCache = data;
         }
+
+        if (isAutoScroll)
+            outputText.scrollTop = outputText.scrollHeight;
     });
 }
 
@@ -34,6 +39,7 @@ function onSendCommand(e) {
     sessionStorage.sextic_cmd = JSON.stringify(commandCache);
 
     cmdInput.value = '';
+    currentCmd = -1;
 }
 
 function onClearConsole(e) {
@@ -41,6 +47,7 @@ function onClearConsole(e) {
 }
 
 
+// Keyboard Control
 document.onkeydown = (e) => {
     let key = e.key;
 
@@ -64,6 +71,22 @@ document.onkeydown = (e) => {
             onSendCommand();
         }
     }
+}
+
+toggleAutoScroll();
+function toggleAutoScroll() {
+    if (isAutoScroll) {
+        $('#atscroll-btn').removeClass('active');
+        $('#atscroll-btn').html('<i class="bi bi-unlock-fill"></i>');
+        isAutoScroll = false;
+    } else {
+        $('#atscroll-btn').addClass('active');
+        $('#atscroll-btn').html('<i class="bi bi-lock-fill"></i>');
+        isAutoScroll = true;
+    }
+    let settings = JSON.parse(localStorage.sextic_settings);
+    settings['console.autoScroll'] = isAutoScroll;
+    localStorage.sextic_settings = JSON.stringify(settings);
 }
 
 

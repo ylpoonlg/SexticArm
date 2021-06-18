@@ -6,7 +6,7 @@ from firmware.functions import *
 app = Flask(__name__)
 
 machine = fw.lgcode.lgcodeReader()
-machine.connectSerial('/dev/ttyACM0')
+#machine.connectSerial('/dev/ttyACM0')
 
 # --------ROUTE--------
 @app.route('/')

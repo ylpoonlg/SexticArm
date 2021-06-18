@@ -1,50 +1,25 @@
-Command Received: G1 X20 Y10 Z200 P0 E90 R0 F3
->> Angles: [26.5651, 6.4193, 167.1614, 0.0, 186.4193, 206.5651]
->> Toolhead: [20.0, 10.0, 200.0]
-Command Received: G1 X20 Y20 Z200 P0 E90 R0 F3
->> Angles: [45.0, 8.1301, 163.7398, 0.0, 188.1301, 225.0]
->> Toolhead: [20.0, 20.0, 200.0]
-Command Received: G1 X20 Y30 Z200 P0 E90 R0 F3
->> Angles: [56.3099, 10.3859, 159.2281, 0.0, 190.3859, 236.3099]
->> Toolhead: [20.0, 30.0, 200.0]
-Command Received: G1 X20 Y40 Z200 P0 E90 R0 F3
->> Angles: [63.4349, 12.921, 154.1581, 0.0, 192.921, 243.4349]
->> Toolhead: [20.0, 40.0, 200.0]
-Command Received: G1 X20 Y40 Z200 P0 E90 R0 F3
->> Angles: [63.4349, 12.921, 154.1581, 0.0, 192.921, 243.4349]
->> Toolhead: [20.0, 40.0, 200.0]
-Command Received: G0 A163.55 A20 A30 A40 A50 A60
->> Angles: [63.55, 0.0, 0.0, 0.0, 0.0, 0.0]
->> Toolhead: [0.0, 0.0, 400.0]
-Command Received: G1 X0 Y0 Z390 P0 E90 R0 F3
->> Angles: [90.0, 341.8051, 36.3897, 0.0, 341.8051, 270.0]
->> Toolhead: [-0.0, -0.0, 390.0]
-Command Received: G1 X0 Y0 Z380 P0 E90 R0 F3
->> Angles: [90.0, 334.1581, 51.6839, 0.0, 334.1581, 270.0]
->> Toolhead: [-0.0, -0.0, 380.0]
-Command Received: G1 X0 Y0 Z370 P0 E90 R0 F3
->> Angles: [90.0, 328.2117, 63.5767, 0.0, 328.2117, 270.0]
->> Toolhead: [-0.0, -0.0, 370.0]
-Command Received: G1 X0 Y0 Z360 P0 E90 R0 F3
->> Angles: [90.0, 323.1301, 73.7398, 360.0, 323.1301, 270.0]
->> Toolhead: [-0.0, -0.0, 360.0]
-Command Received: G1 X0 Y0 Z350 P0 E90 R0 F3
->> Angles: [90.0, 318.5904, 82.8192, 360.0, 318.5904, 270.0]
->> Toolhead: [-0.0, -0.0, 350.0]
-Command Received: G1 X0 Y0 Z340 P0 E90 R0 F3
->> Angles: [90.0, 314.427, 91.146, 0.0, 314.427, 270.0]
->> Toolhead: [-0.0, -0.0, 340.0]
-Command Received: G1 X0 Y0 Z330 P0 E90 R0 F3
->> Angles: [90.0, 310.5416, 98.9168, 0.0, 310.5416, 270.0]
->> Toolhead: [0.0, 0.0, 330.0]
-Command Received: G10
->> Angles: [0, 0, 0, 0, 0, 0]
->> Toolhead: [0.0, 0.0, 400.0]
-Command Received: M0 /dev/ttyACM0
-Failed to open serial port at /dev/ttyACM0
-Command Received: M0 /dev/ttyACM0
-Failed to open serial port at /dev/ttyACM0
-Command Received: M0 /dev/ttyACM0
-Failed to open serial port at /dev/ttyACM0
-Command Received: M0 /dev/ttyACM1
-Failed to open serial port at /dev/ttyACM1
+Command Received: f
+Command Received: fadg
+Command Received: egae
+Command Received: aeg
+Command Received: egae
+Command Received: egae
+Command Received: gegae
+Command Received: ae
+Command Received: gaef
+Command Received: 
+Command Received: fa
+Command Received: eg
+Command Received: asd
+Command Received: f
+Command Received: gae
+Command Received: g
+Command Received: q
+Command Received: b
+Command Received: c
+Command Received: y
+Command Received: q
+Command Received: srrg
+Command Received: ag
+Command Received: eaf
+Command Received: gea
