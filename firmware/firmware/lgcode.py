@@ -40,6 +40,7 @@ class lgcodeReader():
         if (len(paramtrs) == 0):
             return
         
+        # G0 - Move to stepper angle
         if (paramtrs[0] == 'G0'):
             for p in paramtrs:
                 if (p[0] == 'A'):
@@ -60,7 +61,7 @@ class lgcodeReader():
             X, Y, Z = chk.getJointCoordinates(a)[3]
             self.status['X'], self.status['Y'], self.status['Z'] = X, Y, Z
             
-            
+        # G1 - Move to position/rotation
         elif (paramtrs[0] == 'G1'):
             for p in paramtrs:
                 op = float(p[1::])
@@ -77,13 +78,28 @@ class lgcodeReader():
             self.status['A1'], self.status['A2'] = radToDeg(a[0]), radToDeg(a[1])
             self.status['A3'], self.status['A4'] = radToDeg(a[2]), radToDeg(a[3])
             self.status['A5'], self.status['A6'] = radToDeg(a[4]), radToDeg(a[5])
+        
+        # G10 - Reset all steppers to zero
+        elif (paramtrs[0] == 'G10'):
+            self.G0(0, 0, 0, 0, 0, 0, 1)
+            self.status['A1'], self.status['A2'] = 0, 0
+            self.status['A3'], self.status['A4'] = 0, 0
+            self.status['A5'], self.status['A6'] = 0, 0
 
+            self.status['X'], self.status['Y'], self.status['Z'] = 0, 0, cf.L1+cf.L2+cf.L3+cf.L4
+            self.status['P'], self.status['E'], self.status['R'] = 0, 90, 0
 
+        # M0 - Serial Connect
         elif (paramtrs[0] == 'M0'):
             if (len(paramtrs) > 1):
                 self.M0(paramtrs[1])
             else:
                 self.M0()
+
+        # M1 - Set Acceleration
+        elif (paramtrs[0] == 'M1'):
+            if self.status['serial'] and len(paramtrs) > 1:
+                self.ser.write(bytes(f'A {float(paramtrs[1])}\n'.encode()))
             
 
     def readFile(self, path):
@@ -99,7 +115,6 @@ class lgcodeReader():
 
     def moveMotors(self, a, F):
         if self.status['serial']:
-            print(f'status: {self.status}')
             a_deg = [0, radToDeg(a[1]), radToDeg(a[2]), radToDeg(a[3]),
                         radToDeg(a[4]), radToDeg(a[5]), radToDeg(a[6])]
             serialCmd = f'M {a_deg[1]} {a_deg[2]} {a_deg[3]} {a_deg[4]} {a_deg[5]} {a_deg[6]} {F}\n'
