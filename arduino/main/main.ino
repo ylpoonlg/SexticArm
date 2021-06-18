@@ -4,11 +4,11 @@
 
 // Configuration
 const long STEPS_PER_REV = 200 * 16; // full * microsteps
-const int STEPPERS_REVERSE = -1; // [-1, 1] only
+const int STEPPERS_REVERSE[6] = {1, -1, -1, -1, -1, 1}; // [-1, 1] only
 const float STEPPERS_MAX_SPEED = 6000;
 const float STEPPERS_MIN_SPEED = 400;
 const float STEPPERS_ACCELERATION = 50; // in steps per second squared
-const bool SHORTEST_PATH = false;
+const bool SHORTEST_PATH = true;
 
 
 // AccelStepper(type, stepPin, dirPin);
@@ -118,14 +118,14 @@ void getSteps() {
 
   Serial.print("pos: ");
   for (int i=0; i<6; i++) {
-    steps[i] = STEPS_PER_REV * a[i] / 360 * STEPPERS_REVERSE;
+    steps[i] = STEPS_PER_REV * a[i] / 360 * STEPPERS_REVERSE[i];
     pos[i] = steps[i];
 
     if (SHORTEST_PATH) {
-      if (abs( lastSteps[i] + 360 - steps[i] ) < 180) {
-        pos[i] -= 360;
-      } else if (abs( steps[i] + 360 -  lastSteps[i]) < 180) {
-        pos[i] += 360;
+      if (abs( lastSteps[i] + degToSteps(360) - steps[i] ) < degToSteps(180)) {
+        pos[i] -= degToSteps(360);
+      } else if (abs( steps[i] + degToSteps(360) -  lastSteps[i]) < degToSteps(180)) {
+        pos[i] += degToSteps(360);
       }
     }
 
@@ -133,6 +133,12 @@ void getSteps() {
     Serial.print(", ");
   }
   Serial.println();
+  Serial.println();
+
+
+  Serial.println("Steps[0]: "+String(steps[0]));
+  Serial.println("Pos[0]: "+String(pos[0]));
+  Serial.println("Last[0]: "+String(lastSteps[0]));
   Serial.println();
 }
 
@@ -187,4 +193,12 @@ void setAcceleration(long acc) {
   stepper5.setAcceleration(acc);
   stepper6.setAcceleration(acc);
   stepper3.setAcceleration(acc);
+}
+
+double stepsToDeg(long steps) {
+  return steps / STEPS_PER_REV * 360;
+}
+
+long degToSteps(double deg) {
+  return deg / 360 * STEPS_PER_REV;
 }
