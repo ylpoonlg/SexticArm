@@ -49,30 +49,37 @@ setTimeout(() => {
 //--------TABS---------
 hideAllTabs();
 const defaultTab = JSON.parse(localStorage.sextic_settings)['control.defaultTab'];
-$('#'+defaultTab).show();
+$('#'+defaultTab+'-tab').show();
+$('#'+defaultTab+'-btn').addClass('active');
 
 $('#position-btn').click(() => {
     hideAllTabs();
     $('#position-tab').show();
-    saveDefaultTab('position-tab');
+    $('#position-btn').addClass('active');
+    saveDefaultTab('position');
 });
 
 $('#angle-btn').click(() => {
     hideAllTabs();
     $('#angle-tab').show();
-    saveDefaultTab('angle-tab');
+    $('#angle-btn').addClass('active');
+    saveDefaultTab('angle');
 });
 
 $('#file-btn').click(() => {
     hideAllTabs();
     $('#file-tab').show();
-    saveDefaultTab('file-tab');
+    $('#file-btn').addClass('active');
+    saveDefaultTab('file');
 });
 
 function hideAllTabs() {
     $('#position-tab').hide();
     $('#angle-tab').hide();
     $('#file-tab').hide();
+    $('#position-btn').removeClass('active');
+    $('#angle-btn').removeClass('active');
+    $('#file-btn').removeClass('active');
 }
 
 function saveDefaultTab(tab) {

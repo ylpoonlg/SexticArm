@@ -9,7 +9,8 @@ const posText = document.getElementById('pos-text');
 if (!localStorage.sextic_settings) {
     localStorage.sextic_settings = JSON.stringify({
         'base.hideStatus': true,
-        'control.defaultTab': 'position-tab',
+        'base.serial': '/dev/ttyACM0',
+        'control.defaultTab': 'position',
     });
 }
 
