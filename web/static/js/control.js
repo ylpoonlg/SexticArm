@@ -82,7 +82,70 @@ function saveDefaultTab(tab) {
 }
 
 
-// --------FILE----------
+
+//---------POSITION----------
+function sendControl(btn) {
+    const STEP = 10;
+    const STEP_DEG = 10;
+    let newPos = serverStatus;
+    switch (btn) {
+        case 'L1':
+            newPos.Z += STEP;
+            break;
+        case 'L2':
+            newPos.Y += STEP;
+            break;
+        case 'L3':
+            newPos.Z -= STEP;
+            break;
+
+        case 'L4':
+            newPos.X -= STEP;
+            break;
+        case 'L5': // Home
+            httpPOST('/send_cmd', 'G10', (response) => {
+                console.log(response);
+            });
+            return;
+        case 'L6':
+            newPos.X += STEP;
+            break;
+        case 'L8':
+            newPos.Y -= STEP;
+            break;
+        
+        // Rotation
+        case 'R1':
+            newPos.R -= STEP_DEG;
+            break;
+        case 'R2':
+            newPos.E += STEP_DEG;
+            break;
+        case 'R3':
+            newPos.R += STEP_DEG;
+            break;
+        case 'R4':
+            newPos.P += STEP_DEG;
+            break;
+        case 'R6':
+            newPos.P -= STEP_DEG;
+            break;
+        case 'R8':
+            newPos.E -= STEP_DEG;
+            break;
+    }
+
+    serverStatus = newPos;
+
+    let cmd = `G1 X${newPos.X} Y${newPos.Y} Z${newPos.Z} P${newPos.P} E${newPos.E} R${newPos.R} F3`;
+
+    httpPOST('/send_cmd', cmd, (response) => {
+        console.log(response);
+    });
+}
+
+
+//--------FILE----------
 function onSelectBtnClick() {
     fileInput.click();
 }

@@ -1,0 +1,50 @@
+>> Angles: [0.0, 319.0548, 171.8904, 0.0, 229.0548, 180.0]
+>> Toolhead: [10.0, 0.0, 210.0]
+Command Received: G1 X10 Y0 Z200 P0 E90 R0 F3
+>> Angles: [0.0, 2.866, 174.268, 0.0, 182.866, 180.0]
+>> Toolhead: [10.0, 0.0, 200.0]
+Command Received: G1 X0 Y0 Z200 P0 E90 R0 F3
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Angles: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+Command Received: G1 X0 Y0 Z200 P10 E90 R0 F3
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Angles: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+Command Received: G1 X0 Y0 Z200 P20 E90 R0 F3
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Angles: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+Command Received: G1 X0 Y10 Z200 P20 E90 R0 F3
+>> Angles: [90.0, 2.866, 174.268, 360.0, 182.866, 250.0]
+>> Toolhead: [-0.0, 10.0, 200.0]
+Command Received: G1 X0 Y10 Z190 P20 E90 R0 F3
+>> Angles: [90.0, 49.0548, 171.8904, 0.0, 139.0548, 290.0]
+>> Toolhead: [0.0, 10.0, 190.0]
+Command Received: G1 X0 Y10 Z200 P20 E90 R0 F3
+>> Angles: [90.0, 2.866, 174.268, 360.0, 182.866, 250.0]
+>> Toolhead: [-0.0, 10.0, 200.0]
+Command Received: G1 X0 Y10 Z200 P20 E80 R0 F3
+>> Angles: [139.2485, 359.0601, 173.8109, 255.9097, 171.0131, 136.1178]
+>> Toolhead: [0.0, 10.0, 200.0]
+Command Received: G1 X0 Y10 Z200 P20 E70 R0 F3
+>> Angles: [165.516, 354.5412, 170.3233, 277.8757, 168.7268, 130.8687]
+>> Toolhead: [-0.0, 10.0, 200.0]
+Command Received: G1 X0 Y10 Z200 P20 E60 R0 F3
+>> Angles: [176.4693, 351.1416, 165.9435, 293.0766, 167.4681, 134.241]
+>> Toolhead: [0.0, 10.0, 200.0]
+Command Received: G1 X0 Y10 Z200 P20 E50 R0 F3
+>> Angles: [181.8819, 348.1613, 161.3525, 304.5852, 165.9482, 139.4743]
+>> Toolhead: [-0.0, 10.0, 200.0]
+Command Received: G1 X0 Y10 Z200 P20 E40 R0 F3
+>> Angles: [184.9229, 345.3166, 156.7508, 313.3744, 164.0896, 144.3166]
+>> Toolhead: [0.0, 10.0, 200.0]
