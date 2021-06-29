@@ -81,7 +81,7 @@ class lgcodeReader():
         
         # G10 - Reset all steppers to zero
         elif (paramtrs[0] == 'G10'):
-            self.G0(0, 0, 0, 0, 0, 0, 1)
+            self.G0(0, 0, 0, 0, 0, 0, 3)
             self.status['A1'], self.status['A2'] = 0, 0
             self.status['A3'], self.status['A4'] = 0, 0
             self.status['A5'], self.status['A6'] = 0, 0
