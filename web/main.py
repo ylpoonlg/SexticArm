@@ -25,11 +25,7 @@ def preview():
 @app.route('/get_status', methods=['GET'])
 def get_status():
     global machine
-    status = machine.status
-    a = [0, degToRad(status['A1']), degToRad(status['A2']), degToRad(status['A3']),
-            degToRad(status['A4']), degToRad(status['A5']), degToRad(status['A6'])]
-    status['joints'] = fw.checking.getJointCoordinates(a)
-
+    status = machine.getStatus()
     if request.method == 'GET':
         return status
 

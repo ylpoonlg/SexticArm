@@ -16,8 +16,27 @@ class lgcodeReader():
             'A1': 0, 'A2': 0, 'A3': 0,
             'A4': 0, 'A5': 0, 'A6': 0,
             'F': cf.DEFAULT_FEEDRATE,
-            'serial': False
+            'serial': False,
+            'joints': []
         }
+
+    def getStatus(self):
+        # Update serial connection status
+        try:
+            if self.ser.isOpen():
+                self.status['serial'] = True
+            else:
+                self.status['serial'] = False
+        except:
+            self.status['serial'] = False
+        
+        # Calculate joint positions
+        a = [0, degToRad(self.status['A1']), degToRad(self.status['A2']), degToRad(self.status['A3']),
+            degToRad(self.status['A4']), degToRad(self.status['A5']), degToRad(self.status['A6'])]
+        self.status['joints'] = chk.getJointCoordinates(a)
+
+        #print(f'status: {self.status}')
+        return self.status
 
     def connectSerial(self, port='/dev/ttyACM0'):
         # Serial port

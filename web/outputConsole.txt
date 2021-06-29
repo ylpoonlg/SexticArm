@@ -1,0 +1,9 @@
+Failed to open serial port at /dev/ttyACM0
+Command Received: M0 /dev/ttyACM1
+Serial is opened at /dev/ttyACM1
+Command Received: M0 /dev/ttyACM1
+Failed to open serial port at /dev/ttyACM1
+Command Received: M0 /dev/ttyACM0
+Serial is opened at /dev/ttyACM0
+Failed to open serial port at /dev/ttyACM0
+Failed to open serial port at /dev/ttyACM0
