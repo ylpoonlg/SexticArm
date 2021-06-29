@@ -87,38 +87,50 @@
         </div>
         <div class="row">
           <div class="col-6">
-              <div class="mb-1">
-                <label class="form-label" for="a1-input">A1</label>
-                <input id="a1-input" name="a1" class="form-control" type="number"
-                  min="0" max="360" value="0">
-              </div>
-              <div class="mb-1">
-                <label class="form-label" for="a2-input">A2</label>
-                <input id="a2-input" name="a2" class="form-control" type="number"
-                  min="0" max="90" value="0">
-              </div>
-              <div class="mb-1">
-                <label class="form-label" for="a3-input">A3</label>
-                <input id="a3-input" name="a3" class="form-control" type="number"
-                  min="0" max="90" value="0">
-              </div>
+            <div class="mb-1 mx-1 row">
+              <label class="form-label" for="a1-input">A1</label>
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a1', -1)">-</button>
+              <input id="a1-input" name="a1" class="col form-control" type="number"
+                min="0" max="360" value="0">
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a1', +1)">+</button>
+            </div>
+            <div class="mb-1 mx-1 row">
+              <label class="form-label" for="a2-input">A2</label>
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a2', -1)">-</button>
+              <input id="a2-input" name="a2" class="col form-control" type="number"
+                min="0" max="90" value="0">
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a2', +1)">+</button>
+            </div>
+            <div class="mb-1 mx-1 row">
+              <label class="form-label" for="a3-input">A3</label>
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a3', -1)">-</button>
+              <input id="a3-input" name="a3" class="col form-control" type="number"
+                min="0" max="90" value="0">
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a3', +1)">+</button>
+            </div>
           </div>
 
           <div class="col-6">
-            <div class="mb-1">
+            <div class="mb-1 mx-1 row">
               <label class="form-label" for="a1-input">A4</label>
-              <input id="a4-input" name="a4" class="form-control" type="number"
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a4', -1)">-</button>
+              <input id="a4-input" name="a4" class="col form-control" type="number"
                 min="0" max="360" value="0">
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a4', +1)">+</button>
             </div>
-            <div class="mb-1">
+            <div class="mb-1 mx-1 row">
               <label class="form-label" for="a2-input">A5</label>
-              <input id="a5-input" name="a5" class="form-control" type="number"
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a5', -1)">-</button>
+              <input id="a5-input" name="a5" class="col form-control" type="number"
                 min="0" max="90" value="0">
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a5', +1)">+</button>
             </div>
-            <div class="mb-1">
+            <div class="mb-1 mx-1 row">
               <label class="form-label" for="a3-input">A6</label>
-              <input id="a6-input" name="a6" class="form-control" type="number"
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a6', -1)">-</button>
+              <input id="a6-input" name="a6" class="col form-control" type="number"
                 min="0" max="360" value="0">
+              <button type="button" class="col-12 col-sm-3 btn btn-outline-secondary" onclick="changeAngle('a6', +1)">+</button>
             </div>
         </div>
             

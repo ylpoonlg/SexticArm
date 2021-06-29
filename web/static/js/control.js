@@ -170,6 +170,16 @@ $('#submit-angles-btn').click(() => {
     });
 });
 
+function changeAngle(stepper, dir=1) {
+    const amt = 10;
+
+    let inputBox = $(`input[name=${stepper}]`);
+    inputBox.val( parseFloat(inputBox.val()) + amt * dir );
+
+    $('#submit-angles-btn').click();
+}
+
+
 
 //--------FILE----------
 function onSelectBtnClick() {
