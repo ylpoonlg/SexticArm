@@ -3,7 +3,15 @@
 
 
 // Configuration
-const long STEPS_PER_REV = 200 * 16; // full * microsteps
+const long STEPS_PER_REV[6] = {
+  (long)200*16,
+  (long)(200*16*8.33),
+  (long)(200*16*8.33),
+  (long)200*16,
+  (long)200*16,
+  (long)200*16
+}; // full * microsteps * gearing
+
 const int STEPPERS_REVERSE[6] = {1, -1, -1, -1, -1, 1}; // [-1, 1] only
 const float STEPPERS_MAX_SPEED = 6000;
 const float STEPPERS_MIN_SPEED = 400;
@@ -118,14 +126,14 @@ void getSteps() {
 
   Serial.print("pos: ");
   for (int i=0; i<6; i++) {
-    steps[i] = STEPS_PER_REV * a[i] / 360 * STEPPERS_REVERSE[i];
+    steps[i] = STEPS_PER_REV[i] * a[i] / 360 * STEPPERS_REVERSE[i];
     pos[i] = steps[i];
 
     if (SHORTEST_PATH) {
-      if (abs( lastSteps[i] + degToSteps(360) - steps[i] ) < degToSteps(180)) {
-        pos[i] -= degToSteps(360);
-      } else if (abs( steps[i] + degToSteps(360) -  lastSteps[i]) < degToSteps(180)) {
-        pos[i] += degToSteps(360);
+      if (abs( lastSteps[i] + degToSteps(360, STEPS_PER_REV[i]) - steps[i] ) < degToSteps(180, STEPS_PER_REV[i])) {
+        pos[i] -= degToSteps(360, STEPS_PER_REV[i]);
+      } else if (abs( steps[i] + degToSteps(360, STEPS_PER_REV[i]) -  lastSteps[i]) < degToSteps(180, STEPS_PER_REV[i])) {
+        pos[i] += degToSteps(360, STEPS_PER_REV[i]);
       }
     }
 
@@ -195,10 +203,10 @@ void setAcceleration(long acc) {
   stepper3.setAcceleration(acc);
 }
 
-double stepsToDeg(long steps) {
-  return steps / STEPS_PER_REV * 360;
+double stepsToDeg(long steps, long stepsPerRev) {
+  return steps / stepsPerRev * 360;
 }
 
-long degToSteps(double deg) {
-  return deg / 360 * STEPS_PER_REV;
+long degToSteps(double deg, long stepsPerRev) {
+  return deg / 360 * stepsPerRev;
 }
