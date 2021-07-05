@@ -6,6 +6,7 @@ from firmware.functions import *
 import firmware.ik as ik
 import firmware.visualize as visualize
 import serial
+import threading
 
 class lgcodeReader():
     def __init__(self, port='/dev/ttyACM0'):
@@ -19,6 +20,10 @@ class lgcodeReader():
             'serial': False,
             'joints': []
         }
+
+        self.cmdQueue = []
+        
+        threading.Thread(target=self.run).start()
 
     def getStatus(self):
         # Update serial connection status
@@ -51,6 +56,8 @@ class lgcodeReader():
             log(f'Failed to open serial port at {port}', 0)
             self.status['serial'] = False
 
+    def pushCommand(self, cmd):
+        self.cmdQueue.append(cmd)
 
     def decExeCommand(self, cmd):
         cmd = cmd.split(';')[0].strip('\n')
@@ -141,6 +148,13 @@ class lgcodeReader():
             self.ser.write(bytes(serialCmd.encode()))
 
 
+    def run(self):
+        while True:
+            if (len(self.cmdQueue) > 0):
+                cmd = self.cmdQueue.pop(0)
+                self.decExeCommand(cmd)
+
+
     #-------------------------------------------------------------
     #       LGCODE COMMANDS
     #-------------------------------------------------------------
@@ -152,6 +166,7 @@ class lgcodeReader():
         printA([J6_x, J6_y, J6_z], '>> Toolhead: ')
 
         self.moveMotors(a, F)
+        time.sleep(F+0.05)
         # visualize.show(a)
 
     def G1(self, Tx, Ty, Tz, Tap, Tae, Tar, F):

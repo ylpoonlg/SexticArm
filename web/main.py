@@ -45,7 +45,7 @@ def send_cmd():
     global machine
     cmd = str(request.data)[2:-1]
     if request.method == 'POST':
-        machine.decExeCommand(cmd)
+        machine.pushCommand(cmd)
         return f'Command Received: {cmd}'
 
     return 'Invalid Request Method'
