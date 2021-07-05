@@ -174,9 +174,11 @@ function changeAngle(stepper, dir=1) {
     const amt = 10;
 
     let inputBox = $(`input[name=${stepper}]`);
-    inputBox.val( parseFloat(inputBox.val()) + amt * dir );
+    let oldVal = parseFloat(inputBox.val());
+    inputBox.val( oldVal + amt * dir );
 
-    $('#submit-angles-btn').click();
+    // Disabled due to performance issue
+    //$('#submit-angles-btn').click();
 }
 
 
