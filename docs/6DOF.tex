@@ -1,9 +1,38 @@
 \documentclass{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 \begin{document}
-\section{Inverse Kinematics}
 
+%%%
+% Cover Page
+%%%
+
+\begin{center}
+	\vspace*{5cm}
+	\vfill
+	
+	\includegraphics[width=5cm]{../res/logo.png} \\
+	\vspace*{0.8cm}
+	
+	{\huge \textbf{SexticArm Documentation}} \\
+	\vspace*{3cm}
+	
+	{\small by ylpoonlg}	
+		
+	\vfill
+	\vspace*{5cm}
+\end{center}
+
+
+%%%
+% Inverse Kinematics
+%%%
+
+\newpage
+
+\section{Inverse Kinematics}
 \subsection{Rotation Matrices}
 \bigskip
 $
@@ -55,19 +84,67 @@ $
 \end{pmatrix}
 $
 
+
+%%%
+% Hardware
+%%%
+
 \section{Hardware}
+\subsection{Stepper Driver}
+{A4988 Steper Driver} \\
+$V_{ref} = I_{max} * 8 * R_{sens}$ \\ \\
+{Drivers used:}\\
+$R_{sens} = 0.1 \Omega $
+
 \subsection{Stepper Motor}
-\par
-A4988 Steper Driver \\
-$V_{ref} = I_{max} * 0.8 * R_{sens}$
+{NEMA 17: 17HS4401S} \\
+{Specification:}\\
+\indent {Steps per revolution: 200 steps/rev} \\
+\indent {Microstepping: 16} \\
+\indent {Maximum torque: 0.42 Nm} \\
+\indent {Operating current: 1 A}
 
 
+%%%
+% LGCODES
+%%%
+
+\newpage
 \section{LGCODE}
 \subsection{G0}
-G0 A1\{\} A2\{\} A3\{\} A4\{\} A5\{\} A6\{\} F\{\}
+G0 A1\{\} A2\{\} A3\{\} A4\{\} A5\{\} A6\{\} F\{\} \\ \\
+Move steppers by angles (in degrees)
 
 \subsection{G1}
-G0 X\{\} Y\{\} Z\{\} P\{\} E\{\} R\{\} F\{\}
+G1 X\{\} Y\{\} Z\{\} P\{\} E\{\} R\{\} F\{\} \\ \\
+Move steppers to position and orientation (in degrees) \\
+\indent -P \\ \indent \indent Angle in polar coordinate \\
+\indent -E \\ \indent \indent Angle of elevation [-90..90] \\
+\indent -R \\ \indent \indent Rotational angle of the tool head
 
+\subsection{G10}
+G10 \\ \\
+Home Steppers -- Power off required
+
+\subsection{M0}
+M0 \{Serial\_Port\} \\ \\
+Connect Serial at \{Serial\_Port\}
+
+\subsection{M1}
+M1 \{Acceleration\} \\ \\
+Set Acceleration for all steppers
+
+
+%%%
+% Serial Commands
+%%%
+
+\newpage
+\section{Serial Commands}
+\subsection{Move}
+{M \{A1\} \{A2\} \{A3\} \{A4\} \{A5\} \{A6\}\textbackslash n}
+
+\subsection{Acceleration}
+{A \{Acceleration\}\textbackslash n}
 
 \end{document}
