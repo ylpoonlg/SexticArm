@@ -4,12 +4,12 @@
 
 // Configuration
 const long STEPS_PER_REV[6] = {
-  (long)200*16,
-  (long)(200*16*8.33),
-  (long)(200*16*8.33),
-  (long)200*16,
-  (long)200*16,
-  (long)200*16
+  (long)(200*16*6.13),
+  (long)(200*16*7.69),
+  (long)(200*16*7.69),
+  (long)(200*16*1),
+  (long)(200*16*1),
+  (long)(200*16*1)
 }; // full * microsteps * gearing
 
 const int STEPPERS_REVERSE[6] = {1, -1, -1, -1, -1, 1}; // [-1, 1] only
