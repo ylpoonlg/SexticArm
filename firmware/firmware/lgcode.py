@@ -161,13 +161,17 @@ class lgcodeReader():
     def G0(self, a1, a2, a3, a4, a5, a6, F):
         a_deg = [a1, a2, a3, a4, a5, a6]
         a = [0, degToRad(a1), degToRad(a2), degToRad(a3), degToRad(a4), degToRad(a5), degToRad(a6)]
-        printA(a_deg, '>> Angles: ')
-        J6_x, J6_y, J6_z = chk.getJointCoordinates(a)[3]
-        printA([J6_x, J6_y, J6_z], '>> Toolhead: ')
 
-        self.moveMotors(a, F)
-        time.sleep(F+0.05)
-        # visualize.show(a)
+        if (chk.checkAngleLimits(a)):
+            printA(a_deg, '>> Angles: ')
+            J6_x, J6_y, J6_z = chk.getJointCoordinates(a)[3]
+            printA([J6_x, J6_y, J6_z], '>> Toolhead: ')
+
+            self.moveMotors(a, F)
+            time.sleep(F+0.05)
+            # visualize.show(a)
+        else:
+            log('>> Error: Angles out of range.')
 
     def G1(self, Tx, Ty, Tz, Tap, Tae, Tar, F):
         Tap, Tae, Tar = degToRad(Tap), degToRad(Tae), degToRad(Tar) # convert to radian

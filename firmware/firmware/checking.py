@@ -48,3 +48,19 @@ def getJointCoordinates(a):
             (L2_x, L2_y, L2_z),
             (L3_x, L3_y, L3_z),
             (L6_x, L6_y, L6_z),]
+
+# Returns whether the angles are within range
+def checkAngleLimits(a):
+    for i in range(1, 7):
+        a_i = radToDeg(a[i])
+        A_min = cf.ANGLES_LIMIT[i][0]
+        A_max = cf.ANGLES_LIMIT[i][1]
+
+        if A_min > 180:
+            if (a_i < A_min) and (a_i > A_max):
+                return False
+        else:
+            if ((0 < a_i) and (a_i < A_min)) or ((A_max < a_i) and (a_i < 360)):
+                return False
+
+    return True
