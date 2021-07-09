@@ -168,7 +168,7 @@ class lgcodeReader():
             printA([J6_x, J6_y, J6_z], '>> Toolhead: ')
 
             self.moveMotors(a, F)
-            time.sleep(F+0.05)
+            time.sleep(F)
             # visualize.show(a)
         else:
             log('>> Error: Angles out of range.')
@@ -176,8 +176,9 @@ class lgcodeReader():
     def G1(self, Tx, Ty, Tz, Tap, Tae, Tar, F):
         Tap, Tae, Tar = degToRad(Tap), degToRad(Tae), degToRad(Tar) # convert to radian
         a1, a2, a3, a4, a5, a6 = ik.getAngles(Tx, Ty, Tz, Tap, Tae, Tar)
-        self.G0( radToDeg(a1), radToDeg(a2), radToDeg(a3),
-            radToDeg(a4), radToDeg(a5), radToDeg(a6), F)
+        if (a1 != -1):
+            self.G0( radToDeg(a1), radToDeg(a2), radToDeg(a3),
+                radToDeg(a4), radToDeg(a5), radToDeg(a6), F)
 
     def M0(self, port='/dev/ttyACM0'):
         self.connectSerial(port)
