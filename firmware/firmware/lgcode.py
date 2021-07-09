@@ -68,42 +68,30 @@ class lgcodeReader():
         
         # G0 - Move to stepper angle
         if (paramtrs[0] == 'G0'):
+            tmpStatus = self.status
             for p in paramtrs:
                 if (p[0] == 'A'):
                     instr = p[0:2]
                     op = float(p[2::])
-                    self.status[instr] = op
+                    tmpStatus[instr] = op
                 else:
                     op = float(p[1::])
-                    self.status[p[0]] = op
+                    tmpStatus[p[0]] = op
 
-            self.G0( self.status['A1'], self.status['A2'], self.status['A3'],
-                self.status['A4'], self.status['A5'], self.status['A6'],
-                self.status['F'] )
-
-            # Update position as well
-            a = [0, self.status['A1'], self.status['A2'], self.status['A3'],
-                    self.status['A4'], self.status['A5'], self.status['A6']]
-            X, Y, Z = chk.getJointCoordinates(a)[3]
-            self.status['X'], self.status['Y'], self.status['Z'] = X, Y, Z
+            self.G0( tmpStatus['A1'], tmpStatus['A2'], tmpStatus['A3'],
+                tmpStatus['A4'], tmpStatus['A5'], tmpStatus['A6'],
+                tmpStatus['F'] )
             
         # G1 - Move to position/rotation
         elif (paramtrs[0] == 'G1'):
+            tmpStatus = self.status
             for p in paramtrs:
                 op = float(p[1::])
-                self.status[p[0]] = op
+                tmpStatus[p[0]] = op
             
-            self.G1( self.status['X'], self.status['Y'], self.status['Z'],
-                self.status['P'], self.status['E'], self.status['R'],
-                self.status['F'] )
-
-            # Update angles as well
-            a = ik.getAngles( self.status['X'], self.status['Y'], self.status['Z'],
-                degToRad(self.status['P']), degToRad(self.status['E']), degToRad(self.status['R']))
-
-            self.status['A1'], self.status['A2'] = radToDeg(a[0]), radToDeg(a[1])
-            self.status['A3'], self.status['A4'] = radToDeg(a[2]), radToDeg(a[3])
-            self.status['A5'], self.status['A6'] = radToDeg(a[4]), radToDeg(a[5])
+            self.G1( tmpStatus['X'], tmpStatus['Y'], tmpStatus['Z'],
+                tmpStatus['P'], tmpStatus['E'], tmpStatus['R'],
+                tmpStatus['F'] )
         
         # G10 - Reset all steppers to zero
         elif (paramtrs[0] == 'G10'):
@@ -168,8 +156,18 @@ class lgcodeReader():
             printA([J6_x, J6_y, J6_z], '>> Toolhead: ')
 
             self.moveMotors(a, F)
+
+            # Update angles
+            self.status['A1'], self.status['A2'], self.status['A3'] = a1, a2, a3
+            self.status['A4'], self.status['A5'], self.status['A6'] = a4, a5, a6
+                    
+            # Update position
+            self.status['X'], self.status['Y'], self.status['Z'] = chk.getJointCoordinates(a)[3]
+
+            # Update orientation
+            self.status['P'], self.status['E'], self.status['R'] = ik.getRotations(a)
+
             time.sleep(F)
-            # visualize.show(a)
         else:
             log('>> Error: Angles out of range.')
 

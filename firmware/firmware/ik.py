@@ -22,6 +22,19 @@ def getR_03(a1, a2, a3):
     log(f'R_03 = \n{R_03}\n', 3)
     return R_03
 
+def getR_36(a4, a5, a6):
+    return np.array([
+            [np.cos(a4)*np.cos(a5)*np.cos(a6) - np.sin(a4)*np.sin(a6),
+            -np.cos(a4)*np.cos(a5)*np.sin(a6) - np.sin(a4)*np.cos(a6),
+            np.cos(a4)*np.sin(a5)],
+            [np.sin(a4)*np.cos(a5)*np.cos(a6) + np.cos(a4)*np.sin(a6),
+            -np.sin(a4)*np.cos(a5)*np.sin(a6) + np.cos(a4)*np.cos(a6),
+            np.sin(a4)*np.sin(a5)],
+            [-np.sin(a5)*np.cos(a6),
+            np.sin(a5)*np.sin(a6),
+            np.cos(a5)]
+        ])
+
 def getR_06_plane(Tap, Tae, Tar):
     Tae = np.pi/2 - Tae
     R_06 = np.array([
@@ -39,6 +52,35 @@ def getR_06_plane(Tap, Tae, Tar):
     log(f'R_06 = \n{R_06}\n', 3)
 
     return R_06
+
+def getRotations(a):
+    R_03 = getR_03(a[1], a[2], a[3])
+    R_36 = getR_36(a[4], a[5], a[6])
+    R_06 = np.matrix.dot(R_03, R_36)
+
+    Tae = np.pi/2 - np.arccos(R_06[2][2])
+    Tap = np.arccos( R_06[0][2] / np.sin(np.pi/2 - Tae) )
+
+    a1 = -np.cos(Tap) * np.cos(np.pi/2 - Tae)
+    b1 = -np.sin(Tap)
+    k1 = R_06[0][1]
+    t1 = np.roots([(a1*a1 - k1*k1), (2*a1*b1), (b1*b1 - k1*k1)])
+    Tar_1 = [np.arctan(t1[0]), np.arctan(t1[1])]
+
+    a2 = -np.sin(Tap) * np.cos(np.pi/2 - Tae)
+    b2 = np.cos(Tap)
+    k2 = R_06[1][1]
+    t2 = np.roots([(a2*a2 - k2*k2), (2*a2*b2), (b2*b2 - k2*k2)])
+    Tar_2 = [np.arctan(t2[0]), np.arctan(t2[1])]
+    
+    log(f'getRotations: Tar = {Tar_1}, {Tar_2}', 2)
+    if (round(Tar_1[0], 4) == round(Tar_2[0], 4)) or (round(Tar_1[0], 4) == round(Tar_2[1], 4)):
+        Tar = Tar_1[0]
+    else:
+        Tar = Tar_1[1]
+
+    return radToDeg(Tap), radToDeg(Tae), radToDeg(Tar)
+
 
 def getA123(Wx, Wy, Wz):
     R = np.sqrt(Wx*Wx + Wy*Wy)
@@ -108,17 +150,7 @@ def getA456(Tx, Ty, Tz, a1, a2, a3, R_36):
         
         L6_x, L6_y, L6_z = chk.getJointCoordinates([0, a1, a2, a3, a4, a5, a6])[3]
 
-        test_36 = np.array([
-            [np.cos(a4)*np.cos(a5)*np.cos(a6) - np.sin(a4)*np.sin(a6),
-            -np.cos(a4)*np.cos(a5)*np.sin(a6) - np.sin(a4)*np.cos(a6),
-            np.cos(a4)*np.sin(a5)],
-            [np.sin(a4)*np.cos(a5)*np.cos(a6) + np.cos(a4)*np.sin(a6),
-            -np.sin(a4)*np.cos(a5)*np.sin(a6) + np.cos(a4)*np.cos(a6),
-            np.sin(a4)*np.sin(a5)],
-            [-np.sin(a5)*np.cos(a6),
-            np.sin(a5)*np.sin(a6),
-            np.cos(a5)]
-        ])
+        test_36 = getR_36(a4, a5, a6)
 
         if (round(L6_x, 4)==round(Tx, 4)) and (round(L6_y, 4)==round(Ty, 4)) and (round(L6_z, 4)==round(Tz, 4)):
             if round(test_36[0][1], 4) == round(R_36[0][1], 4):
