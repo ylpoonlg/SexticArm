@@ -5,8 +5,8 @@
 // Configuration
 const long STEPS_PER_REV[6] = {
   (long)(200*16*6.13),
-  (long)(200*16*7.69),
-  (long)(200*16*7.69),
+  (long)(200*16*7.5),
+  (long)(200*16*7.5),
   (long)(200*16*1),
   (long)(200*16*1),
   (long)(200*16*1)
