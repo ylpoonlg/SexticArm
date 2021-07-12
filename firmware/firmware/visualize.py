@@ -42,3 +42,19 @@ def show(a):
     ax.set_zlim3d(0, 350)
 
     plt.show(block=False)
+
+def showPoints(points):
+    global ax, plt
+    init()
+
+    for point in points:
+        x, y, z = point[0]
+
+        color = '#00ff00'
+        if not point[1]:
+            color = '#ff0000'
+
+        ax.scatter(x, y, z, color=color)
+
+    plt.show(block=False)
+    

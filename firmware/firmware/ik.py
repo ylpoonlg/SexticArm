@@ -121,7 +121,7 @@ def getA123(Wx, Wy, Wz):
                     a3 += 2*np.pi
                 return a1, a2, a3
     
-    log('>> Error: Failed to get a1, a2, a3', 0)
+    log('>> Error: Failed to get a1, a2, a3', 1)
     return -1, -1, -1
 
 def getA456(Tx, Ty, Tz, a1, a2, a3, R_36):
@@ -163,7 +163,7 @@ def getA456(Tx, Ty, Tz, a1, a2, a3, R_36):
                         a6 += 2*np.pi
                     return a4, a5, a6
 
-    log('>> Error: Failed to get a4, a5, a6', 0)
+    log('>> Error: Failed to get a4, a5, a6', 1)
     return -1, -1, -1
 
 def getWristPosition(Tx, Ty, Tz, Tap, Tae, Tar):
