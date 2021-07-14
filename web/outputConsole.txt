@@ -1,15 +1,50 @@
-Command Received: G1 X100 Y150 Z150 P20 E10 R59
-W (53.72917108008383, 133.15879555832674, 141.3175911166535)
->> Angles: [68.0261, 49.4538, 88.0129, 230.5381, 71.501, 206.9966]
->> Toolhead: [100.0, 150.0, 150.0]
-getRotations: Tar = [1.029744258676654, -0.1394325995025648], [-1.1559818839864613, 1.0297442586766536]
-Command Received: G1 X100 Y150 Z150 P20 E10 R59
-W (53.72917108008383, 133.15879555832674, 141.3175911166535)
->> Angles: [68.0261, 49.4538, 88.0129, 230.5381, 71.501, 206.9966]
->> Toolhead: [100.0, 150.0, 150.0]
-getRotations: Tar = [1.029744258676654, -0.1394325995025648], [-1.1559818839864613, 1.0297442586766536]
-Command Received: G1 X100 Y150 Z150 P20 E10 R59
-W (53.72917108008383, 133.15879555832674, 141.3175911166535)
->> Angles: [68.0261, 49.4538, 88.0129, 230.5381, 71.501, 206.9966]
->> Toolhead: [100.0, 150.0, 150.0]
-getRotations: Tar = [1.029744258676654, -0.1394325995025648], [-1.1559818839864613, 1.0297442586766536]
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+Command Received: G1 X0 Y0 Z400
+>> Angles: [90.0, 0.0, 0.0, 0.0, 0.0, 270.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+Command Received: G1 X0 Y50 Z250
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+Command Received: G1 X0 Y50 Z300
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+Command Received: G1 X50 Y50 Z200
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
+Command Received: G1 X50 Y50 Z150
+>> Error: Failed to get a1, a2, a3
+>> Error: Failed to get a4, a5, a6
