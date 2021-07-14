@@ -140,6 +140,7 @@ class lgcodeReader():
             if (len(self.cmdQueue) > 0):
                 cmd = self.cmdQueue.pop(0)
                 self.decExeCommand(cmd)
+            time.sleep(0.01)
 
 
     #-------------------------------------------------------------
