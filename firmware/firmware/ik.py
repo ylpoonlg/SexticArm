@@ -61,16 +61,22 @@ def getRotations(a):
     Tae = np.pi/2 - np.arccos(R_06[2][2])
     Tap = np.arccos( R_06[0][2] / np.sin(np.pi/2 - Tae) )
 
-    a1 = -np.cos(Tap) * np.cos(np.pi/2 - Tae)
-    b1 = -np.sin(Tap)
-    k1 = R_06[0][1]
-    t1 = np.roots([(a1*a1 - k1*k1), (2*a1*b1), (b1*b1 - k1*k1)])
+    try:
+        a1 = -np.cos(Tap) * np.cos(np.pi/2 - Tae)
+        b1 = -np.sin(Tap)
+        k1 = R_06[0][1]
+        t1 = np.roots([(a1*a1 - k1*k1), (2*a1*b1), (b1*b1 - k1*k1)])
+    except:
+        t1 = 0
     Tar_1 = [np.arctan(t1[0]), np.arctan(t1[1])]
 
-    a2 = -np.sin(Tap) * np.cos(np.pi/2 - Tae)
-    b2 = np.cos(Tap)
-    k2 = R_06[1][1]
-    t2 = np.roots([(a2*a2 - k2*k2), (2*a2*b2), (b2*b2 - k2*k2)])
+    try:
+        a2 = -np.sin(Tap) * np.cos(np.pi/2 - Tae)
+        b2 = np.cos(Tap)
+        k2 = R_06[1][1]
+        t2 = np.roots([(a2*a2 - k2*k2), (2*a2*b2), (b2*b2 - k2*k2)])
+    except:
+        t2 = 0
     Tar_2 = [np.arctan(t2[0]), np.arctan(t2[1])]
     
     log(f'getRotations: Tar = {Tar_1}, {Tar_2}', 2)
