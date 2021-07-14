@@ -1,4 +1,4 @@
-DEBUG_LOG_LEVEL = 0
+DEBUG_LOG_LEVEL = 1
 
 #------------------------------------------
 #   INPUT FILE

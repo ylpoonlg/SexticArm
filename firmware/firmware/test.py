@@ -2,15 +2,16 @@ import firmware as fw
 
 machine = fw.lgcode.lgcodeReader()
 
-def getTestPoints():
+def getTestPoints(sep=20):
     points = []
     count = 0
 
     maxZ = fw.config.L1 + fw.config.L2 + fw.config.L3 + fw.config.L4
-    for i in range(-200, 201, 10):
-        for j in range(-200, 201, 10):
-            for k in range(0, maxZ+1, 10):
-                Tap, Tae, Tar = 0, 0, 0
+    maxXY = maxZ - fw.config.L1
+    for i in range(-maxXY, maxXY+1, sep):
+        for j in range(-maxXY, maxXY+1, sep):
+            for k in range(0, maxZ+1, sep):
+                Tap, Tae, Tar = 0, 90, 0
                 a = fw.ik.getAngles(i, j, k, Tap, Tae, Tar)
 
                 print(f'[{count}] Testing ({i}, {j}, {k}) | ({Tap}, {Tae}, {Tar})')
@@ -25,5 +26,5 @@ def getTestPoints():
 
 
 if __name__ == '__main__':
-    points = getTestPoints()
+    points = getTestPoints(sep=50)
     print(f'testPoints = {points}')

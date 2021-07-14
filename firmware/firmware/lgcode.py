@@ -123,8 +123,7 @@ class lgcodeReader():
         lines = script.readlines()
         log('________STARTING________', 0)
         for line in lines:
-            self.decExeCommand(line)
-            time.sleep(2)
+            self.pushCommand(line)
         log('________FINISHED________\n', 0)
 
     def moveMotors(self, a, F):
@@ -169,7 +168,7 @@ class lgcodeReader():
 
             time.sleep(F)
         else:
-            log('>> Error: Angles out of range.')
+            log('>> Error: Angles out of range.', 1)
 
     def G1(self, Tx, Ty, Tz, Tap, Tae, Tar, F):
         Tap, Tae, Tar = degToRad(Tap), degToRad(Tae), degToRad(Tar) # convert to radian
