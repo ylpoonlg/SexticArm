@@ -289,3 +289,21 @@ function stopFile() {
     runButton.removeAttribute('disabled');
     stopButton.setAttribute('disabled', '');
 }
+
+
+
+// Keyboard Control
+document.onkeydown = (e) => {
+    let key = e.key;
+
+    let tab = JSON.parse(localStorage.sextic_settings)['control.defaultTab'];
+    if (tab == 'position') {
+
+    } else if (tab == 'angle') {
+        if (key == 'Enter') {
+            $('#submit-angles-btn').click();
+        }
+    } else if (tab == 'file') {
+
+    }
+}

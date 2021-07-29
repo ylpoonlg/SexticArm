@@ -1,50 +1,50 @@
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
-Command Received: G1 X0 Y0 Z400
->> Angles: [90.0, 0.0, 0.0, 0.0, 0.0, 270.0]
+>> Angles: [0, 0, 0, 0, 0, 0]
 >> Toolhead: [0.0, 0.0, 400.0]
-Command Received: G1 X0 Y50 Z250
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
-Command Received: G1 X0 Y50 Z300
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
-Command Received: G1 X50 Y50 Z200
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
-Command Received: G1 X50 Y50 Z150
->> Error: Failed to get a1, a2, a3
->> Error: Failed to get a4, a5, a6
+Command Received: G0 A110 A20 A30 A40 A50 A60
+>> Angles: [10.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [0.0, 0.0, 400.0]
+Command Received: G0 A110 A210 A30 A40 A50 A60
+>> Angles: [10.0, 10.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [42.7525, 7.5384, 396.2019]
+Command Received: G0 A110 A220 A30 A40 A50 A60
+>> Angles: [10.0, 20.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [84.206, 14.8478, 384.9232]
+Command Received: G0 A110 A230 A30 A40 A50 A60
+>> Angles: [10.0, 30.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [123.101, 21.706, 366.5064]
+Command Received: G0 A110 A230 A310 A40 A50 A60
+>> Angles: [10.0, 30.0, 10.0, 0.0, 0.0, 0.0]
+>> Toolhead: [144.1937, 25.4252, 351.5092]
+Command Received: G0 A110 A230 A320 A40 A50 A60
+>> Angles: [10.0, 30.0, 20.0, 0.0, 0.0, 0.0]
+>> Toolhead: [162.4014, 28.6357, 333.0207]
+Command Received: G0 A110 A230 A330 A40 A50 A60
+>> Angles: [10.0, 30.0, 30.0, 0.0, 0.0, 0.0]
+>> Toolhead: [177.1707, 31.24, 311.6025]
+Command Received: G0 A110 A230 A340 A40 A50 A60
+>> Angles: [10.0, 30.0, 40.0, 0.0, 0.0, 0.0]
+>> Toolhead: [188.0529, 33.1588, 287.9056]
+Command Received: G1 X198.0528744103589 Y33.15879555832674 Z287.9055618772942 P10.000000000000012 E20.000000000000004 R0 F3
+>> Angles: [9.3532, 39.806, 24.1011, 5.7086, 6.1219, 354.545]
+>> Toolhead: [198.0529, 33.1588, 287.9056]
+Command Received: G10
+>> Angles: [0, 0, 0, 0, 0, 0]
+>> Toolhead: [0.0, 0.0, 400.0]
+Command Received: G0 A10 A210 A30 A40 A50 A60
+>> Angles: [0.0, 10.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [43.412, 0.0, 396.2019]
+Command Received: G0 A10 A220 A30 A40 A50 A60
+>> Angles: [0.0, 20.0, 0.0, 0.0, 0.0, 0.0]
+>> Toolhead: [85.505, 0.0, 384.9232]
+Command Received: G0 A10 A220 A310 A40 A50 A60
+>> Angles: [0.0, 20.0, 10.0, 0.0, 0.0, 0.0]
+>> Toolhead: [109.202, 0.0, 373.8731]
+Command Received: G10
+>> Angles: [0, 0, 0, 0, 0, 0]
+>> Toolhead: [0.0, 0.0, 400.0]
+Command Received: G0 A10 A220 A310 A40 A50 A60
+>> Angles: [0.0, 20.0, 10.0, 0.0, 0.0, 0.0]
+>> Toolhead: [109.202, 0.0, 373.8731]
+Command Received: G10
+>> Angles: [0, 0, 0, 0, 0, 0]
+>> Toolhead: [0.0, 0.0, 400.0]
