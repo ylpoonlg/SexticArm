@@ -59,31 +59,20 @@ def getRotations(a):
     R_06 = np.matrix.dot(R_03, R_36)
 
     Tae = np.pi/2 - np.arccos(R_06[2][2])
-    Tap = np.arccos( R_06[0][2] / np.sin(np.pi/2 - Tae) )
 
-    try:
-        a1 = -np.cos(Tap) * np.cos(np.pi/2 - Tae)
-        b1 = -np.sin(Tap)
-        k1 = R_06[0][1]
-        t1 = np.roots([(a1*a1 - k1*k1), (2*a1*b1), (b1*b1 - k1*k1)])
-    except:
-        t1 = 0
-    Tar_1 = [np.arctan(t1[0]), np.arctan(t1[1])]
-
-    try:
-        a2 = -np.sin(Tap) * np.cos(np.pi/2 - Tae)
-        b2 = np.cos(Tap)
-        k2 = R_06[1][1]
-        t2 = np.roots([(a2*a2 - k2*k2), (2*a2*b2), (b2*b2 - k2*k2)])
-    except:
-        t2 = 0
-    Tar_2 = [np.arctan(t2[0]), np.arctan(t2[1])]
+    Tap = 0
+    if (round( np.sin(np.pi/2 - Tae) , 4) != 0):
+        if ( R_06[0][2] / np.sin(np.pi/2 - Tae) >= -1 ) and ( R_06[0][2] / np.sin(np.pi/2 - Tae) <= 1 ):
+            Tap = np.arccos( R_06[0][2] / np.sin(np.pi/2 - Tae) )
     
-    log(f'getRotations: Tar = {Tar_1}, {Tar_2}', 2)
-    if (round(Tar_1[0], 4) == round(Tar_2[0], 4)) or (round(Tar_1[0], 4) == round(Tar_2[1], 4)):
-        Tar = Tar_1[0]
+    Tar = 0
+    if (round( np.sin(np.pi/2 - Tae) , 4) != 0):
+        if ( R_06[2][1] / np.sin(np.pi/2 - Tae) >= -1 ) and ( R_06[2][1] / np.sin(np.pi/2 - Tae) <= 1 ):
+            Tar = np.arcsin( R_06[2][1] / np.sin(np.pi/2 - Tae) )
     else:
-        Tar = Tar_1[1]
+        Tar = a[1] + a[4] + a[6]
+        while (Tar >= 2 * np.pi):
+            Tar -= 2 * np.pi
 
     return radToDeg(Tap), radToDeg(Tae), radToDeg(Tar)
 
