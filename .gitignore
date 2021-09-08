@@ -1,3 +1,4 @@
+.vscode/*
 docs/*
 !docs/6DOF.pdf
 !docs/6DOF.tex

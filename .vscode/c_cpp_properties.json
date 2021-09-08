@@ -18,6 +18,7 @@
                 "/home/long/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino",
                 "/home/long/.arduino15/packages/arduino/hardware/avr/1.8.3/variants/mega",
                 "/home/long/Arduino/libraries/AccelStepper/src",
+                "/home/long/Arduino/libraries/Servo/src",
                 "/home/long/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
                 "/home/long/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
                 "/home/long/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
