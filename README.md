@@ -26,5 +26,7 @@ In `SexticArm/web`, run
 
     gunicorn main:app
 
+It is recommended to write a bash script to autostart everything.
+
 ## Documentation
 [docs](docs/6DOF.pdf)
